@@ -1,0 +1,40 @@
+import { useCallback, useState } from 'react';
+
+export const useHttpRequest = <T>() => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const sendRequest = useCallback(
+    async (
+      url: string /*TODO: Ask on frontendmentor.io whether the result type is alright*/,
+      callbackFn: (result: T) => void
+    ) => {
+      try {
+        setIsLoading(true);
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error('Error occured while fetching the data.');
+        }
+
+        const result = await response.json();
+
+        callbackFn(result);
+      } catch (error) {
+        let errorMsg = 'An error occured.';
+        if (error instanceof Error) errorMsg = error.message;
+        setError(errorMsg);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
+
+  return {
+    sendRequest,
+    isLoading,
+    error,
+  };
+};
