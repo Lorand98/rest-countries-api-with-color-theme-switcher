@@ -1,5 +1,7 @@
+import CountryList from './components/CountryList';
+
 function App() {
-  return <div></div>;
+  return <CountryList />;
 }
 
 export default App;
