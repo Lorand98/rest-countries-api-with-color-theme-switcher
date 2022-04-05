@@ -36,23 +36,23 @@ const CountryList: React.FC = () => {
   }, [sendRequest]);
 
   return (
-    <div>
+    <ul>
       {isLoading ? (
         <h1>LOADING...</h1>
       ) : error ? (
         <h1>{error}</h1>
       ) : (
         countries.map((country: Country) => (
-          <div key={country.alpha2Code}>
+          <li key={country.alpha2Code}>
             <img alt={`${country.name} flag`} src={country.flags.svg} />
             <p>Name: {country.name}</p>
             <p>Population: {country.population}</p>
             <p>Region: {country.region}</p>
             <p>Capital: {country.capital}</p>
-          </div>
+          </li>
         ))
       )}
-    </div>
+    </ul>
   );
 };
 
