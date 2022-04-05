@@ -6,7 +6,7 @@ export const useHttpRequest = <T>() => {
 
   const sendRequest = useCallback(
     async (
-      url: string /*TODO: Ask on frontendmentor.io whether the result type is alright*/,
+      url: string /*TODO: Ask on frontendmentor.io whether the result type is alright - is it needed or no*/,
       callbackFn: (result: T) => void
     ) => {
       try {

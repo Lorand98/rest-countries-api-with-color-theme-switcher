@@ -3,54 +3,34 @@ import { COUNTRIES_API, COUNTRIES_API_ALL_PARAMS, UNKNOWN } from '../constants';
 import { useHttpRequest } from '../hooks/https_requests';
 import { Country } from '../types';
 
-//TODO: Question: Is it ok to put any to the type of the apireslt? If yes, what to put since structure is uknown - is not determined by us since by an external API
-const validateCountries = (APIResultCountries: any) => {
-  const countries: Country[] = APIResultCountries.map((APIcountry: any) => {
-    const {
-      name,
-      population,
-      region,
-      capital,
-      flags,
-      alpha2Code,
-    }: {
-      name: string;
-      population: number;
-      region: string;
-      capital: string;
+const validateCountries = (countries: Country[]) => {
+  const validCountries: Country[] = countries.map((country: Country) => {
+    const validCountry: Country = {
+      name: country.name || UNKNOWN,
+      alpha2Code: country.alpha2Code,
+      capital: country.capital || UNKNOWN,
+      region: country.region || UNKNOWN,
+      population: country.population ?? UNKNOWN,
       flags: {
-        svg: string;
-        png: string;
-      };
-      alpha2Code: string;
-    } = APIcountry;
-
-    const country: Country = {
-      name,
-      population: population ?? UNKNOWN,
-      region: region || UNKNOWN,
-      capital: capital || UNKNOWN,
-      //TODO: return template img src instead of UNKNOWN string for the flag
-      flag: flags.svg || flags.png || UNKNOWN,
-      code: alpha2Code,
+        svg: country.flags.svg,
+        png: country.flags.png,
+      },
     };
 
-    return country;
+    return validCountry;
   });
-  return countries;
+  return validCountries;
 };
 
 const CountryList: React.FC = () => {
   const [countries, setCountries] = useState<Country[]>([]);
 
-  const loadCountries = (countriesFromAPI: any) => {
-    const validCountries = validateCountries(countriesFromAPI);
+  const loadCountries = (loadedCountries: Country[]) => {
+    const validCountries = validateCountries(loadedCountries);
     setCountries(validCountries);
   };
 
-  const { sendRequest, isLoading, error } =
-    //TODO: change any to an actual country type
-    useHttpRequest<any>();
+  const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
   useEffect(() => {
     sendRequest(`${COUNTRIES_API}${COUNTRIES_API_ALL_PARAMS}`, loadCountries);
   }, [sendRequest]);
@@ -63,8 +43,8 @@ const CountryList: React.FC = () => {
         <h1>{error}</h1>
       ) : (
         countries.map((country: Country) => (
-          <div key={country.code}>
-            <img alt={`${country.name} flag`} src={country.flag} />
+          <div key={country.alpha2Code}>
+            <img alt={`${country.name} flag`} src={country.flags.svg} />
             <p>Name: {country.name}</p>
             <p>Population: {country.population}</p>
             <p>Region: {country.region}</p>
