@@ -6,8 +6,12 @@ import { Country } from "../types";
 const validateCountries = (countries: Country[]) => {
   const validCountries: Country[] = countries.map((country: Country) => {
     const validCountry: Country = {
-      name: country.name || UNKNOWN,
-      alpha2Code: country.alpha2Code,
+      name: {
+        common: country.name.common || UNKNOWN,
+        official: country.name.official || UNKNOWN,
+        nativeName: country.name.nativeName,
+      },
+      cca2: country.cca2,
       capital: country.capital || UNKNOWN,
       region: country.region || UNKNOWN,
       population: country.population ?? UNKNOWN,
@@ -43,9 +47,9 @@ const CountryList: React.FC = () => {
         <h1>{error}</h1>
       ) : (
         countries.map((country: Country) => (
-          <li key={country.alpha2Code}>
-            <img alt={`${country.name} flag`} src={country.flags.svg} />
-            <p>Name: {country.name}</p>
+          <li key={country.cca2}>
+            <img alt={`${country.name.common} flag`} src={country.flags.svg} />
+            <p>Name: {country.name.common}</p>
             <p>Population: {country.population}</p>
             <p>Region: {country.region}</p>
             <p>Capital: {country.capital}</p>

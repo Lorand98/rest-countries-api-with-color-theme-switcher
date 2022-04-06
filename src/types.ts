@@ -1,6 +1,15 @@
 export interface Country {
-  name: string;
-  alpha2Code: string;
+  name: {
+    common: string;
+    official: string;
+    nativeName: {
+      spa: {
+        official: string;
+        common: string;
+      };
+    };
+  };
+  cca2: string;
   capital: string;
   region: string;
   population: number | string;
