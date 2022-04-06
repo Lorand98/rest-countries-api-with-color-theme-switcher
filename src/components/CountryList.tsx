@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { COUNTRIES_API, COUNTRIES_API_ALL_PARAMS, UNKNOWN } from "../constants";
 import { useHttpRequest } from "../hooks/https_requests";
 import { Country } from "../types";
+import CountryListElement from "./CountryListElement";
 
 const validateCountries = (countries: Country[]) => {
   const validCountries: Country[] = countries.map((country: Country) => {
@@ -47,13 +48,7 @@ const CountryList: React.FC = () => {
         <h1>{error}</h1>
       ) : (
         countries.map((country: Country) => (
-          <li key={country.cca2}>
-            <img alt={`${country.name.common} flag`} src={country.flags.svg} />
-            <p>Name: {country.name.common}</p>
-            <p>Population: {country.population}</p>
-            <p>Region: {country.region}</p>
-            <p>Capital: {country.capital}</p>
-          </li>
+          <CountryListElement key={country.cca2} country={country} />
         ))
       )}
     </ul>
