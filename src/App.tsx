@@ -1,11 +1,11 @@
-import CountryList from "./components/CountryList";
-import classes from "./App.module.scss";
+import CountryList from './components/CountryList';
+import classes from './App.module.scss';
 
 //TODO: Routing
 function App() {
   return (
-    <div className={classes["background"]}>
-      <CountryList />;
+    <div className={classes['background']}>
+      <CountryList />
     </div>
   );
 }
