@@ -3,7 +3,8 @@
 .country {
   background-color: variables.$color-white-dark-mode-text-light-els;
   box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 0;

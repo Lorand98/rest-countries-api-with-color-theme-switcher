@@ -1,0 +1,35 @@
+@use '../../sass/abstracts/variables.module';
+
+.search-bar {
+  margin: 0rem auto 5rem;
+  padding: 1.4rem 3rem;
+  max-width: 90%;
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: flex-start;
+  background-color: variables.$color-white-dark-mode-text-light-els;
+  gap: 3rem;
+  box-shadow: 0.1rem 0.1rem 1rem variables.$shadow-light-black;
+
+  &__btn {
+    background-color: inherit;
+    border: none;
+    color: variables.$color-dark-gray-light-input;
+    display: flex;
+    align-items: center;
+    &__icon {
+      min-width: 2rem;
+      min-height: 2rem;
+    }
+  }
+
+  &__input {
+    border: none;
+    font-size: 1.2rem;
+
+    &::placeholder {
+      color: variables.$color-dark-gray-light-input;
+      opacity: 0.5;
+    }
+  }
+}
