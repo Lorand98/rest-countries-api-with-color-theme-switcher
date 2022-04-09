@@ -1,4 +1,5 @@
 @use '../../sass/abstracts/variables.module';
+@use '../../sass/abstracts/mixins.module';
 
 .country {
   background-color: variables.$color-white-dark-mode-text-light-els;
@@ -8,6 +9,14 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+
+  &--light {
+    @include mixins.element-theme(light);
+  }
+
+  &--dark {
+    @include mixins.element-theme(dark);
+  }
 
   &__flag {
     max-width: 100%;

@@ -1,4 +1,5 @@
 @use '../../sass/abstracts/variables.module';
+@use '../../sass/abstracts/mixins.module';
 
 .search-bar {
   margin: 0rem auto 5rem;
@@ -11,13 +12,30 @@
   gap: 3rem;
   box-shadow: 0.1rem 0.1rem 1rem variables.$shadow-light-black;
 
+  &--light {
+    @include mixins.element-theme(light);
+  }
+
+  &--dark {
+    @include mixins.element-theme(dark);
+  }
+
   &__btn {
     background-color: inherit;
     border: none;
-    color: variables.$color-dark-gray-light-input;
+
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    &--light {
+      color: variables.$color-dark-gray-light-input;
+    }
+
+    &--dark {
+      color: variables.$color-white-dark-mode-text-light-els;
+    }
+
     &__icon {
       min-width: 2rem;
       min-height: 2rem;
@@ -27,10 +45,15 @@
   &__input {
     border: none;
     font-size: 1.2rem;
+    background-color: inherit;
 
-    &::placeholder {
+    &--light::placeholder {
       color: variables.$color-dark-gray-light-input;
       opacity: 0.5;
+    }
+
+    &--dark::placeholder {
+      color: variables.$color-white-dark-mode-text-light-els;
     }
   }
 }

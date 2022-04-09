@@ -1,3 +1,5 @@
+@use './variables.module';
+
 @mixin respond($breakpoint) {
   //MOBILE FIRST DESIGN
 
@@ -22,3 +24,12 @@
   //   }
   // }
 }
+
+@mixin element-theme($theme) {
+  @if $theme == light {
+    background-color: variables.$color-white-dark-mode-text-light-els;
+  }
+  @if $theme == dark {
+    background-color: variables.$color-dark-blue-light-els;
+  }
+} ;

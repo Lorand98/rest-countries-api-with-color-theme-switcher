@@ -8,7 +8,7 @@ const CountryListElement: React.FC<{ country: Country }> = ({
   country: Country;
 }) => {
   return (
-    <li key={country.cca2} className={classes['country']}>
+    <li key={country.cca2} className={classes['country--dark']}>
       <img
         alt={`${country.name.common} flag`}
         src={country.flags.svg}

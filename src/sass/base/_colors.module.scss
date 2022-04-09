@@ -1,5 +1,21 @@
 @use '../abstracts/variables.module';
 
-body {
-  color: variables.$color-very-dark-blue-light-text;
+.text {
+  &--light {
+    color: variables.$color-very-dark-blue-light-text;
+  }
+
+  &--dark {
+    color: variables.$color-white-dark-mode-text-light-els;
+  }
+}
+
+.background {
+  &--light {
+    background-color: variables.$color-very-light-gray-light-bg;
+  }
+
+  &--dark {
+    background-color: variables.$color-very-dark-blue-dark-bg;
+  }
 }
