@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import { COUNTRIES_API, COUNTRIES_API_ALL_PARAMS, UNKNOWN } from "../constants";
-import { useHttpRequest } from "../hooks/https_requests";
-import { Country } from "../types";
-import CountryListElement from "./CountryListElement";
+import { useEffect, useState } from 'react';
+import { COUNTRIES_API, COUNTRIES_API_ALL_PARAMS, UNKNOWN } from '../constants';
+import { useHttpRequest } from '../hooks/https_requests';
+import { Country } from '../types';
+import CountryListElement from './CountryListElement';
+
+import classes from './CountryList.module.scss';
 
 const validateCountries = (countries: Country[]) => {
   const validCountries: Country[] = countries.map((country: Country) => {
@@ -41,16 +43,10 @@ const CountryList: React.FC = () => {
   }, [sendRequest]);
 
   return (
-    <ul>
-      {isLoading ? (
-        <h1>LOADING...</h1>
-      ) : error ? (
-        <h1>{error}</h1>
-      ) : (
-        countries.map((country: Country) => (
-          <CountryListElement key={country.cca2} country={country} />
-        ))
-      )}
+    <ul className={classes['country-list']}>
+      {countries.map((country: Country) => (
+        <CountryListElement key={country.cca2} country={country} />
+      ))}
     </ul>
   );
 };

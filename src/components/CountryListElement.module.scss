@@ -1,0 +1,29 @@
+@use '../sass/abstracts/variables.module';
+
+.country {
+  background-color: variables.$color-white-dark-mode-text-light-els;
+  box-shadow: 0rem 0.1rem 1.4rem variables.$shadow-light-black;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  &__flag {
+    max-width: 100%;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.4rem;
+
+    &__details {
+      &__property {
+        &__name {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
