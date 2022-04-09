@@ -1,8 +1,3 @@
-@use "./sass/base/base.module";
-@use "./sass/base/colors.module";
-@use "./sass/base/typography.module";
-@use "./sass/abstracts/variables.module";
-
-.background {
-  background-color: variables.$color-very-light-gray-light-bg;
-}
+@use './sass/base/base.module';
+@use './sass/base/colors.module';
+@use './sass/base/typography.module';

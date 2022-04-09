@@ -1,12 +1,15 @@
-import CountryList from './components/CountryList';
-import classes from './App.module.scss';
+import CountryList from './components/CountryList/CountryList';
+import './App.module.scss';
+import Header from './components/Header/Header';
 
 //TODO: Routing
 function App() {
   return (
-    <div className={classes['background']}>
+    <>
+      <Header />
+
       <CountryList />
-    </div>
+    </>
   );
 }
 

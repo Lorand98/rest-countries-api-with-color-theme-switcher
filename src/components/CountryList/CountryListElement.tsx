@@ -1,4 +1,4 @@
-import { Country } from '../types';
+import { Country } from '../../types';
 
 import classes from './CountryListElement.module.scss';
 

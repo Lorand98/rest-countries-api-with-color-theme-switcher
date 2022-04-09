@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
-import { COUNTRIES_API, COUNTRIES_API_ALL_PARAMS, UNKNOWN } from '../constants';
-import { useHttpRequest } from '../hooks/https_requests';
-import { Country } from '../types';
+import {
+  COUNTRIES_API,
+  COUNTRIES_API_ALL_PARAMS,
+  UNKNOWN,
+} from '../../constants';
+import { useHttpRequest } from '../../hooks/https_requests';
+import { Country } from '../../types';
 import CountryListElement from './CountryListElement';
 
 import classes from './CountryList.module.scss';

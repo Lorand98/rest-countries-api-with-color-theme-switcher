@@ -1,0 +1,23 @@
+@use '../../sass/abstracts/variables.module';
+
+.header {
+  display: flex;
+  min-height: 6rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: variables.$color-white-dark-mode-text-light-els;
+  margin: 0 0 4rem 0;
+  box-shadow: 0 0.1rem 0.8rem variables.$shadow-light-black;
+
+  &__theme-toggle-btn {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: variables.$color-dark-blue-light-els;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+  }
+}
