@@ -17,6 +17,7 @@
     color: variables.$color-dark-gray-light-input;
     display: flex;
     align-items: center;
+    cursor: pointer;
     &__icon {
       min-width: 2rem;
       min-height: 2rem;
