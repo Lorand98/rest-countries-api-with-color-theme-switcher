@@ -15,7 +15,10 @@ const CountryListElement: React.FC<{ country: Country }> = ({
     : classes['country--dark'];
 
   return (
-    <li key={country.cca2} className={countryThemeClass}>
+    <li
+      key={country.cca2}
+      className={[classes['country'], countryThemeClass].join(' ')}
+    >
       <img
         alt={`${country.name.common} flag`}
         src={country.flags.svg}
