@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/theme-context';
 import { Country } from '../../types';
 
 import classes from './CountryListElement.module.scss';
@@ -7,8 +9,13 @@ const CountryListElement: React.FC<{ country: Country }> = ({
 }: {
   country: Country;
 }) => {
+  const themeCtx = useContext(ThemeContext);
+  const countryThemeClass = themeCtx.isLight
+    ? classes['country--light']
+    : classes['country--dark'];
+
   return (
-    <li key={country.cca2} className={classes['country--dark']}>
+    <li key={country.cca2} className={countryThemeClass}>
       <img
         alt={`${country.name.common} flag`}
         src={country.flags.svg}
