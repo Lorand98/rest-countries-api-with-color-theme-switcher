@@ -14,13 +14,16 @@ const SearchBar: React.FC = () => {
     ? classes['search-bar__input--light']
     : classes['search-bar__input--dark'];
 
+  const searchButtonThemeClass = themeCtx.isLight
+    ? classes['search-bar__btn--light']
+    : classes['search-bar__btn--dark'];
+
   return (
     <div className={[classes['search-bar'], searchBarThemeClass].join(' ')}>
       <button
-        className={[
-          classes['search-bar__btn'],
-          classes['search-bar__btn--dark'],
-        ].join(' ')}
+        className={[classes['search-bar__btn'], searchButtonThemeClass].join(
+          ' '
+        )}
       >
         <AiOutlineSearch className={classes['search-bar__btn__icon']} />
       </button>
