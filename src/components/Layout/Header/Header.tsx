@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import classes from './Header.module.scss';
 import { IoMoonOutline } from 'react-icons/io5';
+import { BsSun } from 'react-icons/bs';
 import { ThemeContext } from '../../../context/theme-context';
 
 const Header: React.FC = () => {
@@ -17,7 +18,13 @@ const Header: React.FC = () => {
         className={classes['header__theme-toggle-btn']}
         onClick={themeCtx.toggleTheme}
       >
-        <IoMoonOutline className={classes['header__theme-toggle-btn__icon']} />
+        {themeCtx.isLight ? (
+          <IoMoonOutline
+            className={classes['header__theme-toggle-btn__icon']}
+          />
+        ) : (
+          <BsSun className={classes['header__theme-toggle-btn__icon']} />
+        )}
         <span>{themeCtx.isLight ? 'Dark Mode' : 'Light Mode'}</span>
       </button>
     </div>
