@@ -34,7 +34,7 @@
 //   }
 // }
 
-@mixin element-background-theme-classes {
+@mixin element-background-theme-classes() {
   &--light {
     background-color: variables.$color-white-dark-mode-text-light-els;
   }

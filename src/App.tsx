@@ -4,6 +4,7 @@ import Header from './components/Layout/Header/Header';
 import SearchBar from './components/UI/SearchBar';
 import { ThemeContext } from './context/theme-context';
 import { useContext } from 'react';
+import RegionFilter from './components/UI/RegionFilter';
 
 //TODO: Routing
 function App() {
@@ -20,6 +21,7 @@ function App() {
     <div className={[backgroundThemeClass, textThemeClass].join(' ')}>
       <Header />
       <SearchBar />
+      <RegionFilter />
       <CountryList />
     </div>
   );

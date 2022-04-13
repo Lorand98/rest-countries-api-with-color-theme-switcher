@@ -1,14 +1,70 @@
+@use '../../sass/abstracts/variables.module';
 @use '../../sass/abstracts/mixins.module';
 
+$filter-header-and-list-padding: 1.5rem;
+$filter-header-and-list-box-shadow: 0.1rem 0.1rem 1rem
+  variables.$shadow-light-black;
+$filter-header-and-list-border-radius: 0.5rem;
+
 .filter {
-  position: relative;
   max-width: 50%;
+  margin: 1rem 0 2rem 5%;
+  font-size: 1.2rem;
+  font-weight: 600;
 
   &__header {
-    @include mixins.element-background-theme-classes();
+    padding: $filter-header-and-list-padding;
+    box-shadow: $filter-header-and-list-box-shadow;
+    border-radius: $filter-header-and-list-border-radius;
+    @include mixins.element-background-theme-classes;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    & > * {
+      transition: all 300ms;
+    }
+
+    &:hover {
+      & > * {
+        transform: scale(1.1);
+      }
+    }
+
+    &__arrow-down {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__list-wrapper {
+    position: relative;
   }
 
   &__list {
+    top: 0.4rem;
+    padding: $filter-header-and-list-padding;
+    box-shadow: $filter-header-and-list-box-shadow;
+    border-radius: $filter-header-and-list-border-radius;
+    list-style: none;
+    position: absolute;
+    min-width: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
     @include mixins.element-background-theme-classes;
+
+    &__element {
+      transition: all 300ms;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
   }
 }
