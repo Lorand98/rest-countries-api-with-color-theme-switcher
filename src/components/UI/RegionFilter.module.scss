@@ -1,11 +1,14 @@
+@use '../../sass/abstracts/mixins.module';
+
 .filter {
   position: relative;
   max-width: 50%;
 
   &__header {
-    max-width: 50%;
+    @include mixins.element-background-theme-classes();
   }
 
   &__list {
+    @include mixins.element-background-theme-classes;
   }
 }

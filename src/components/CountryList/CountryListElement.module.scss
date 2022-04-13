@@ -10,13 +10,7 @@
   flex-direction: column;
   gap: 0;
 
-  &--light {
-    @include mixins.element-theme(light);
-  }
-
-  &--dark {
-    @include mixins.element-theme(dark);
-  }
+  @include mixins.element-background-theme-classes;
 
   &__flag {
     max-width: 100%;

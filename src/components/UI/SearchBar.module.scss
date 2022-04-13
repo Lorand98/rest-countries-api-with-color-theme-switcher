@@ -12,13 +12,7 @@
   gap: 3rem;
   box-shadow: 0.1rem 0.1rem 1rem variables.$shadow-light-black;
 
-  &--light {
-    @include mixins.element-theme(light);
-  }
-
-  &--dark {
-    @include mixins.element-theme(dark);
-  }
+  @include mixins.element-background-theme-classes;
 
   &__btn {
     background-color: inherit;

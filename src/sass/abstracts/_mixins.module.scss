@@ -25,11 +25,21 @@
   // }
 }
 
-@mixin element-theme($theme) {
-  @if $theme == light {
+// @mixin element-theme($theme) {
+//   @if $theme == light {
+//     background-color: variables.$color-white-dark-mode-text-light-els;
+//   }
+//   @if $theme == dark {
+//     background-color: variables.$color-dark-blue-light-els;
+//   }
+// }
+
+@mixin element-background-theme-classes {
+  &--light {
     background-color: variables.$color-white-dark-mode-text-light-els;
   }
-  @if $theme == dark {
+
+  &--dark {
     background-color: variables.$color-dark-blue-light-els;
   }
-} ;
+}
