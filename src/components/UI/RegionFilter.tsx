@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { ThemeContext } from '../../context/theme-context';
 import classes from './RegionFilter.module.scss';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { COUNTRY_REGIONS } from '../../types';
 
 const RegionFilter: React.FC = () => {
   const [showList, setShowList] = useState(false);
@@ -42,11 +43,15 @@ const RegionFilter: React.FC = () => {
               regionFilterListThemeClasses,
             ].join(' ')}
           >
-            <li className={classes['filter__list__element']}>Africa</li>
-            <li className={classes['filter__list__element']}>America</li>
-            <li className={classes['filter__list__element']}>Asia</li>
-            <li className={classes['filter__list__element']}>Europe</li>
-            <li className={classes['filter__list__element']}>Oceania</li>
+            {(
+              Object.keys(COUNTRY_REGIONS) as (keyof typeof COUNTRY_REGIONS)[]
+            ).map((countryRegion) => {
+              return (
+                <li className={classes['filter__list__element']}>
+                  {COUNTRY_REGIONS[countryRegion]}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
