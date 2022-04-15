@@ -3,8 +3,9 @@ import { ThemeContext } from '../../context/theme-context';
 import classes from './RegionFilter.module.scss';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { COUNTRY_REGIONS } from '../../types';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { countryFilterActions } from '../../store/countryFilterSlice';
 
 const RegionFilter: React.FC = () => {
   const [showList, setShowList] = useState(false);
@@ -13,7 +14,14 @@ const RegionFilter: React.FC = () => {
     (state: RootState) => state.countryFilter
   );
 
+  const dispatch = useDispatch<AppDispatch>();
+
   const showListHandler = () => setShowList((prevShowList) => !prevShowList);
+
+  const filterRegionHandler = (region: COUNTRY_REGIONS) => {
+    dispatch(countryFilterActions.enableFilter(region));
+    showListHandler();
+  };
 
   const themeCtx = useContext(ThemeContext);
 
@@ -50,28 +58,26 @@ const RegionFilter: React.FC = () => {
             ].join(' ')}
           >
             {Object.keys(COUNTRY_REGIONS)
-              .filter((countryRegion) => {
+              .filter((countryRegionString) => {
                 return (
                   COUNTRY_REGIONS[
-                    countryRegion as keyof typeof COUNTRY_REGIONS
+                    countryRegionString as keyof typeof COUNTRY_REGIONS
                   ] !== filteredRegion
                 );
               })
-              .map((countryRegion) => {
-                const filterListElementClasses = [
-                  classes['filter__list__element'],
-                ];
+              .map((countryRegionString) => {
+                const countryRegion =
+                  COUNTRY_REGIONS[
+                    countryRegionString as keyof typeof COUNTRY_REGIONS
+                  ];
 
                 return (
                   <li
                     key={countryRegion}
-                    className={filterListElementClasses.join(' ')}
+                    className={classes['filter__list__element']}
+                    onClick={filterRegionHandler.bind(this, countryRegion)}
                   >
-                    {
-                      COUNTRY_REGIONS[
-                        countryRegion as keyof typeof COUNTRY_REGIONS
-                      ]
-                    }
+                    {countryRegion}
                   </li>
                 );
               })}
