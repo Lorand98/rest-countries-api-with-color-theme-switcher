@@ -21,7 +21,7 @@ export interface Country {
 }
 
 export enum COUNTRY_REGIONS {
-  ALL = 'Show All',
+  ALL = 'Filter by Region',
   AFRICA = 'Africa',
   AMERICA = 'America',
   ASIA = 'Asia',
