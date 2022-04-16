@@ -41,11 +41,20 @@
     font-size: 1.2rem;
     background-color: inherit;
 
+    &:focus {
+      outline: none;
+    }
+
+    &--light {
+      color: variables.$color-very-dark-blue-light-text;
+    }
+
     &--light::placeholder {
       color: variables.$color-dark-gray-light-input;
       opacity: 0.5;
     }
 
+    &--dark,
     &--dark::placeholder {
       color: variables.$color-white-dark-mode-text-light-els;
     }
