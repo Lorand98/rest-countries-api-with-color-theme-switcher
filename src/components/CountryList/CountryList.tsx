@@ -36,6 +36,8 @@ const validateCountries = (countries: Country[]) => {
   return validCountries;
 };
 
+let initialRun = true;
+
 const CountryList: React.FC = () => {
   const { countries } = useSelector((state: RootState) => state.countries);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
@@ -45,27 +47,42 @@ const CountryList: React.FC = () => {
     (state: RootState) => state.countryFilter
   );
 
-  // useEffect(() => {
-  //   if (filteredRegion !== COUNTRY_REGIONS.ALL) {
-  //     setCountries((countries) =>
-  //       countries.filter((country) => {
-  //         return country.region === filteredRegion;
-  //       })
-  //     );
-  //   }
-  // }, [filteredRegion]);
+  useEffect(() => {
+    if (initialRun) {
+      initialRun = false;
+      return;
+    }
 
-  // useEffect(() => {
-  //   if (searchedCountry.trim() !== '') {
-  //     setCountries((countries) =>
-  //       countries.filter(
-  //         (country) =>
-  //           country.name.common.includes(searchedCountry) ||
-  //           country.name.official.includes(searchedCountry)
-  //       )
-  //     );
-  //   }
-  // }, [searchedCountry]);
+    setFilteredCountries(countries);
+  }, [countries]);
+
+  //TODO: Fix filter logic, optimize
+
+  useEffect(() => {
+    if (filteredRegion !== COUNTRY_REGIONS.ALL) {
+      setFilteredCountries(
+        countries.filter((country) => {
+          return country.region.includes(filteredRegion);
+        })
+      );
+    }
+
+    if (filteredRegion === COUNTRY_REGIONS.ALL) {
+      setFilteredCountries(countries);
+    }
+  }, [filteredRegion]);
+
+  useEffect(() => {
+    if (searchedCountry.trim() !== '') {
+      setFilteredCountries(
+        countries.filter(
+          (country) =>
+            country.name.common.includes(searchedCountry) ||
+            country.name.official.includes(searchedCountry)
+        )
+      );
+    }
+  }, [searchedCountry]);
 
   const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
   useEffect(() => {
@@ -76,11 +93,11 @@ const CountryList: React.FC = () => {
     };
 
     sendRequest(`${COUNTRIES_API}${COUNTRIES_API_ALL_PARAMS}`, loadCountries);
-  }, [sendRequest]);
+  }, [sendRequest, dispatch]);
 
   return (
     <ul className={classes['country-list']}>
-      {countries.map((country: Country) => (
+      {filteredCountries.map((country: Country) => (
         <CountryListElement key={country.cca2} country={country} />
       ))}
     </ul>
