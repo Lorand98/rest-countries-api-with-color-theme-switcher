@@ -5,10 +5,13 @@ import {
   UNKNOWN,
 } from '../../constants';
 import { useHttpRequest } from '../../hooks/https_requests';
-import { Country } from '../../types';
+import { Country, COUNTRY_REGIONS } from '../../types';
 import CountryListElement from './CountryListElement';
 
 import classes from './CountryList.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { countryActions } from '../../store/countrySlice';
 
 const validateCountries = (countries: Country[]) => {
   const validCountries: Country[] = countries.map((country: Country) => {
@@ -34,15 +37,44 @@ const validateCountries = (countries: Country[]) => {
 };
 
 const CountryList: React.FC = () => {
-  const [countries, setCountries] = useState<Country[]>([]);
+  const { countries } = useSelector((state: RootState) => state.countries);
+  const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const loadCountries = (loadedCountries: Country[]) => {
-    const validCountries = validateCountries(loadedCountries);
-    setCountries(validCountries);
-  };
+  const { filteredRegion, searchedCountry } = useSelector(
+    (state: RootState) => state.countryFilter
+  );
+
+  // useEffect(() => {
+  //   if (filteredRegion !== COUNTRY_REGIONS.ALL) {
+  //     setCountries((countries) =>
+  //       countries.filter((country) => {
+  //         return country.region === filteredRegion;
+  //       })
+  //     );
+  //   }
+  // }, [filteredRegion]);
+
+  // useEffect(() => {
+  //   if (searchedCountry.trim() !== '') {
+  //     setCountries((countries) =>
+  //       countries.filter(
+  //         (country) =>
+  //           country.name.common.includes(searchedCountry) ||
+  //           country.name.official.includes(searchedCountry)
+  //       )
+  //     );
+  //   }
+  // }, [searchedCountry]);
 
   const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
   useEffect(() => {
+    const loadCountries = (loadedCountries: Country[]) => {
+      const validCountries = validateCountries(loadedCountries);
+
+      dispatch(countryActions.setCountries(validCountries));
+    };
+
     sendRequest(`${COUNTRIES_API}${COUNTRIES_API_ALL_PARAMS}`, loadCountries);
   }, [sendRequest]);
 

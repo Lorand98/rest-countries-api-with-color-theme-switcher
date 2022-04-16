@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import countryFilterSlice from './countryFilterSlice';
+import countrySlice from './countrySlice';
 
 const store = configureStore({
-  reducer: { countryFilter: countryFilterSlice },
+  reducer: { countryFilter: countryFilterSlice, countries: countrySlice },
 });
 
 export default store;
