@@ -87,12 +87,13 @@ const CountryList: React.FC = () => {
           countries.filter((country) => {
             return (
               country.region.includes(filteredRegion) &&
-              (country.name.common
+              country.name.common
                 .toLowerCase()
-                .includes(searchedCountryLowerCase) ||
-                country.name.official
-                  .toLowerCase()
-                  .includes(searchedCountryLowerCase))
+                .includes(searchedCountryLowerCase)
+              // ||
+              // country.name.official
+              //   .toLowerCase()
+              //   .includes(searchedCountryLowerCase)
             );
           })
         );
@@ -110,8 +111,9 @@ const CountryList: React.FC = () => {
         setFilteredCountries(
           countries.filter(
             (country) =>
-              country.name.common.toLowerCase().includes(searchedCountry) ||
-              country.name.official.toLowerCase().includes(searchedCountry)
+              country.name.common.toLowerCase().includes(searchedCountry)
+            // ||
+            // country.name.official.toLowerCase().includes(searchedCountry)
           )
         );
       } else {
