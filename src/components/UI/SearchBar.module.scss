@@ -14,26 +14,9 @@
 
   @include mixins.element-background-theme-classes;
 
-  &__btn {
-    background-color: inherit;
-    border: none;
-
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-
-    &--light {
-      color: variables.$color-dark-gray-light-input;
-    }
-
-    &--dark {
-      color: variables.$color-white-dark-mode-text-light-els;
-    }
-
-    &__icon {
-      min-width: 2rem;
-      min-height: 2rem;
-    }
+  &__icon {
+    min-width: 2rem;
+    min-height: 2rem;
   }
 
   &__input {

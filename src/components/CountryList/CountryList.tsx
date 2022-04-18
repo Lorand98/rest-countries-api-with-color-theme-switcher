@@ -51,6 +51,12 @@ const CountryList: React.FC = () => {
 
   //TODO: create tests for checking if the filter/search function works - with dummy data
 
+  //TODO: outsource filter/search logic to an external function, and call only that function from the useEffect
+
+  //TODO: optimize searching performance - e.g.: paging
+
+  //TODO: Render the proper message when there are no countries found
+
   const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
 
   useEffect(() => {
@@ -73,15 +79,22 @@ const CountryList: React.FC = () => {
   }, [countries]);
 
   useEffect(() => {
+    const searchedCountryLowerCase = searchedCountry.toLowerCase();
+
     if (filteredRegion !== COUNTRY_REGIONS.ALL) {
-      if (searchedCountry.trim() !== '') {
+      if (searchedCountryLowerCase.trim() !== '') {
         setFilteredCountries(
-          countries.filter(
-            (country) =>
+          countries.filter((country) => {
+            return (
               country.region.includes(filteredRegion) &&
-              (country.name.common.includes(searchedCountry) ||
-                country.name.official.includes(searchedCountry))
-          )
+              (country.name.common
+                .toLowerCase()
+                .includes(searchedCountryLowerCase) ||
+                country.name.official
+                  .toLowerCase()
+                  .includes(searchedCountryLowerCase))
+            );
+          })
         );
       } else {
         setFilteredCountries(
@@ -97,8 +110,8 @@ const CountryList: React.FC = () => {
         setFilteredCountries(
           countries.filter(
             (country) =>
-              country.name.common.includes(searchedCountry) ||
-              country.name.official.includes(searchedCountry)
+              country.name.common.toLowerCase().includes(searchedCountry) ||
+              country.name.official.toLowerCase().includes(searchedCountry)
           )
         );
       } else {

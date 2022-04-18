@@ -1,10 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
 import { ThemeContext } from '../../context/theme-context';
+import { AppDispatch } from '../../store';
+import { countryFilterActions } from '../../store/countryFilterSlice';
 import classes from './SearchBar.module.scss';
 
 const SearchBar: React.FC = () => {
   const themeCtx = useContext(ThemeContext);
+  const dispatch = useDispatch<AppDispatch>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const searchBarThemeClass = themeCtx.isLight
     ? classes['search-bar--light']
@@ -18,20 +23,22 @@ const SearchBar: React.FC = () => {
     ? classes['search-bar__btn--light']
     : classes['search-bar__btn--dark'];
 
+  const searchHandler = () => {
+    if (inputRef?.current)
+      dispatch(countryFilterActions.setSearchedCountry(inputRef.current.value));
+  };
+
   return (
     <div className={[classes['search-bar'], searchBarThemeClass].join(' ')}>
-      <button
-        className={[classes['search-bar__btn'], searchButtonThemeClass].join(
-          ' '
-        )}
-      >
-        <AiOutlineSearch className={classes['search-bar__btn__icon']} />
-      </button>
+      <AiOutlineSearch className={classes['search-bar__icon']} />
+
       <input
         className={[classes['search-bar__input'], searchInputThemeClass].join(
           ' '
         )}
         placeholder='Search for a country...'
+        ref={inputRef}
+        onChange={searchHandler}
       />
     </div>
   );
