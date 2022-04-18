@@ -47,44 +47,12 @@ const CountryList: React.FC = () => {
     (state: RootState) => state.countryFilter
   );
 
-  useEffect(() => {
-    if (initialRun) {
-      initialRun = false;
-      return;
-    }
+  //TODO: Are these UseEffects alright? Is it ok to use 3 useffects in the same component for different tasks? Only the first performs sideeffect
 
-    setFilteredCountries(countries);
-  }, [countries]);
-
-  //TODO: Fix filter logic, optimize
-
-  useEffect(() => {
-    if (filteredRegion !== COUNTRY_REGIONS.ALL) {
-      setFilteredCountries(
-        countries.filter((country) => {
-          return country.region.includes(filteredRegion);
-        })
-      );
-    }
-
-    if (filteredRegion === COUNTRY_REGIONS.ALL) {
-      setFilteredCountries(countries);
-    }
-  }, [filteredRegion]);
-
-  useEffect(() => {
-    if (searchedCountry.trim() !== '') {
-      setFilteredCountries(
-        countries.filter(
-          (country) =>
-            country.name.common.includes(searchedCountry) ||
-            country.name.official.includes(searchedCountry)
-        )
-      );
-    }
-  }, [searchedCountry]);
+  //TODO: create tests for checking if the filter/search function works - with dummy data
 
   const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
+
   useEffect(() => {
     const loadCountries = (loadedCountries: Country[]) => {
       const validCountries = validateCountries(loadedCountries);
@@ -94,6 +62,50 @@ const CountryList: React.FC = () => {
 
     sendRequest(`${COUNTRIES_API}${COUNTRIES_API_ALL_PARAMS}`, loadCountries);
   }, [sendRequest, dispatch]);
+
+  useEffect(() => {
+    if (initialRun) {
+      initialRun = false;
+      return;
+    }
+
+    setFilteredCountries(countries);
+  }, [countries]);
+
+  useEffect(() => {
+    if (filteredRegion !== COUNTRY_REGIONS.ALL) {
+      if (searchedCountry.trim() !== '') {
+        setFilteredCountries(
+          countries.filter(
+            (country) =>
+              country.region.includes(filteredRegion) &&
+              (country.name.common.includes(searchedCountry) ||
+                country.name.official.includes(searchedCountry))
+          )
+        );
+      } else {
+        setFilteredCountries(
+          countries.filter((country) => {
+            return country.region.includes(filteredRegion);
+          })
+        );
+      }
+    }
+
+    if (filteredRegion === COUNTRY_REGIONS.ALL) {
+      if (searchedCountry.trim() !== '') {
+        setFilteredCountries(
+          countries.filter(
+            (country) =>
+              country.name.common.includes(searchedCountry) ||
+              country.name.official.includes(searchedCountry)
+          )
+        );
+      } else {
+        setFilteredCountries(countries);
+      }
+    }
+  }, [filteredRegion, searchedCountry, countries]);
 
   return (
     <ul className={classes['country-list']}>
