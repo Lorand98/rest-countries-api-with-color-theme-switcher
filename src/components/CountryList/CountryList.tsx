@@ -58,8 +58,6 @@ const CountryList: React.FC = () => {
 
   //TODO: optimize searching performance - e.g.: paging
 
-  //TODO: Render the proper message when there are no countries found
-
   //TODO: Loading animation
 
   const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
@@ -130,7 +128,11 @@ const CountryList: React.FC = () => {
   let alert = null;
   if (error) {
     alert = <Alert severity={AlertSeverity.SEVERE}>{error}</Alert>;
-  } else if (!isLoading && filteredCountries.length === 0) {
+  } else if (
+    !isLoading &&
+    filteredCountries.length === 0 &&
+    searchedCountry.trim().length > 0
+  ) {
     alert = (
       <Alert severity={AlertSeverity.LOW}>{NO_COUNTRIES_ALERT_MSG}</Alert>
     );
@@ -139,9 +141,11 @@ const CountryList: React.FC = () => {
   return (
     alert ?? (
       <ul className={classes['country-list']}>
-        {filteredCountries.map((country: Country) => (
-          <CountryListElement key={country.cca2} country={country} />
-        ))}
+        {isLoading
+          ? 'LOADING'
+          : filteredCountries.map((country: Country) => (
+              <CountryListElement key={country.cca2} country={country} />
+            ))}
       </ul>
     )
   );

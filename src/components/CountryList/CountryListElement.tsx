@@ -4,11 +4,7 @@ import { Country } from '../../types';
 
 import classes from './CountryListElement.module.scss';
 
-const CountryListElement: React.FC<{ country: Country }> = ({
-  country,
-}: {
-  country: Country;
-}) => {
+const CountryListElement: React.FC<{ country: Country }> = ({ country }) => {
   const themeCtx = useContext(ThemeContext);
   const countryThemeClass = themeCtx.isLight
     ? classes['country--light']

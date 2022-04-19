@@ -11,8 +11,8 @@ function App() {
   const themeCtx = useContext(ThemeContext);
 
   const backgroundThemeClass = themeCtx.isLight
-    ? classes['background--light']
-    : classes['background--dark'];
+    ? [classes['background'], classes['background--light']].join(' ')
+    : [classes['background'], classes['background--dark']].join(' ');
   const textThemeClass = themeCtx.isLight
     ? classes['text--light']
     : classes['text--dark'];
