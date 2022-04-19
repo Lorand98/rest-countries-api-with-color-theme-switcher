@@ -20,11 +20,16 @@ export interface Country {
   independent?: boolean;
 }
 
-export enum COUNTRY_REGIONS {
+export enum CountryRegions {
   ALL = 'Filter by Region',
   AFRICA = 'Africa',
   AMERICA = 'America',
   ASIA = 'Asia',
   EUROPE = 'Europe',
   OCEANIA = 'Oceania',
+}
+
+export enum AlertSeverity {
+  SEVERE = 'SEVERE',
+  LOW = 'LOW',
 }

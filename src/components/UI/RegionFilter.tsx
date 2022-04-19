@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { ThemeContext } from '../../context/theme-context';
 import classes from './RegionFilter.module.scss';
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import { COUNTRY_REGIONS } from '../../types';
+import { CountryRegions } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { countryFilterActions } from '../../store/countryFilterSlice';
@@ -18,7 +18,7 @@ const RegionFilter: React.FC = () => {
 
   const showListHandler = () => setShowList((prevShowList) => !prevShowList);
 
-  const filterRegionHandler = (region: COUNTRY_REGIONS) => {
+  const filterRegionHandler = (region: CountryRegions) => {
     dispatch(countryFilterActions.enableFilter(region));
     showListHandler();
   };
@@ -57,18 +57,18 @@ const RegionFilter: React.FC = () => {
               regionFilterListThemeClasses,
             ].join(' ')}
           >
-            {Object.keys(COUNTRY_REGIONS)
+            {Object.keys(CountryRegions)
               .filter((countryRegionString) => {
                 return (
-                  COUNTRY_REGIONS[
-                    countryRegionString as keyof typeof COUNTRY_REGIONS
+                  CountryRegions[
+                    countryRegionString as keyof typeof CountryRegions
                   ] !== filteredRegion
                 );
               })
               .map((countryRegionString) => {
                 const countryRegion =
-                  COUNTRY_REGIONS[
-                    countryRegionString as keyof typeof COUNTRY_REGIONS
+                  CountryRegions[
+                    countryRegionString as keyof typeof CountryRegions
                   ];
 
                 return (

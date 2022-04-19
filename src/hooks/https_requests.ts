@@ -1,8 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
 export const useHttpRequest = <T>() => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const sendRequest = useCallback(
     async (
@@ -15,15 +15,20 @@ export const useHttpRequest = <T>() => {
         const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error("Error occured while fetching the data.");
+          throw new Error('Error occured while fetching the data.');
         }
 
         const result = await response.json();
 
         callbackFn(result);
       } catch (error) {
-        let errorMsg = "An error occured.";
-        if (error instanceof Error) errorMsg = error.message;
+        console.log();
+        let errorMsg = 'An error occured.';
+        if (error instanceof Error) {
+          if (error.name === 'TypeError') {
+            errorMsg = `${error.message}. Please check your internet connection!`;
+          }
+        }
         setError(errorMsg);
       } finally {
         setIsLoading(false);

@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { COUNTRY_REGIONS } from '../types';
+import { CountryRegions } from '../types';
 
 type CountryFilter = {
-  filteredRegion: COUNTRY_REGIONS;
+  filteredRegion: CountryRegions;
   searchedCountry: string;
 };
 
 const countryFilterSlice = createSlice({
   name: 'filter',
   initialState: {
-    filteredRegion: COUNTRY_REGIONS.ALL,
+    filteredRegion: CountryRegions.ALL,
     searchedCountry: '',
   } as CountryFilter,
   reducers: {
-    enableFilter(state, action: PayloadAction<COUNTRY_REGIONS>) {
+    enableFilter(state, action: PayloadAction<CountryRegions>) {
       state.filteredRegion = action.payload;
     },
 

@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react';
 import {
   COUNTRIES_API,
   COUNTRIES_API_ALL_PARAMS,
+  NO_COUNTRIES_ALERT_MSG,
   UNKNOWN,
 } from '../../constants';
 import { useHttpRequest } from '../../hooks/https_requests';
-import { Country, COUNTRY_REGIONS } from '../../types';
+import { Country, CountryRegions } from '../../types';
 import CountryListElement from './CountryListElement';
 
 import classes from './CountryList.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { countryActions } from '../../store/countrySlice';
+import Alert from '../UI/Alert';
+import { AlertSeverity } from '../../types';
 
 const validateCountries = (countries: Country[]) => {
   const validCountries: Country[] = countries.map((country: Country) => {
@@ -57,6 +60,8 @@ const CountryList: React.FC = () => {
 
   //TODO: Render the proper message when there are no countries found
 
+  //TODO: Loading animation
+
   const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
 
   useEffect(() => {
@@ -81,7 +86,7 @@ const CountryList: React.FC = () => {
   useEffect(() => {
     const searchedCountryLowerCase = searchedCountry.toLowerCase();
 
-    if (filteredRegion !== COUNTRY_REGIONS.ALL) {
+    if (filteredRegion !== CountryRegions.ALL) {
       if (searchedCountryLowerCase.trim() !== '') {
         setFilteredCountries(
           countries.filter((country) => {
@@ -106,7 +111,7 @@ const CountryList: React.FC = () => {
       }
     }
 
-    if (filteredRegion === COUNTRY_REGIONS.ALL) {
+    if (filteredRegion === CountryRegions.ALL) {
       if (searchedCountry.trim() !== '') {
         setFilteredCountries(
           countries.filter(
@@ -122,12 +127,23 @@ const CountryList: React.FC = () => {
     }
   }, [filteredRegion, searchedCountry, countries]);
 
+  let alert = null;
+  if (error) {
+    alert = <Alert severity={AlertSeverity.SEVERE}>{error}</Alert>;
+  } else if (!isLoading && filteredCountries.length === 0) {
+    alert = (
+      <Alert severity={AlertSeverity.LOW}>{NO_COUNTRIES_ALERT_MSG}</Alert>
+    );
+  }
+
   return (
-    <ul className={classes['country-list']}>
-      {filteredCountries.map((country: Country) => (
-        <CountryListElement key={country.cca2} country={country} />
-      ))}
-    </ul>
+    alert ?? (
+      <ul className={classes['country-list']}>
+        {filteredCountries.map((country: Country) => (
+          <CountryListElement key={country.cca2} country={country} />
+        ))}
+      </ul>
+    )
   );
 };
 
