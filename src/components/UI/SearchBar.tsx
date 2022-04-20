@@ -1,10 +1,10 @@
-import { useContext, useRef } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
-import { ThemeContext } from '../../context/theme-context';
-import { AppDispatch } from '../../store';
-import { countryFilterActions } from '../../store/countryFilterSlice';
-import classes from './SearchBar.module.scss';
+import { useContext, useRef } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { ThemeContext } from "../../context/theme-context";
+import { AppDispatch } from "../../store";
+import { countryFilterActions } from "../../store/countryFilterSlice";
+import classes from "./SearchBar.module.scss";
 
 const SearchBar: React.FC = () => {
   const themeCtx = useContext(ThemeContext);
@@ -12,16 +12,12 @@ const SearchBar: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const searchBarThemeClass = themeCtx.isLight
-    ? classes['search-bar--light']
-    : classes['search-bar--dark'];
+    ? classes["search-bar--light"]
+    : classes["search-bar--dark"];
 
   const searchInputThemeClass = themeCtx.isLight
-    ? classes['search-bar__input--light']
-    : classes['search-bar__input--dark'];
-
-  const searchButtonThemeClass = themeCtx.isLight
-    ? classes['search-bar__btn--light']
-    : classes['search-bar__btn--dark'];
+    ? classes["search-bar__input--light"]
+    : classes["search-bar__input--dark"];
 
   const searchHandler = () => {
     if (inputRef?.current)
@@ -29,14 +25,14 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <div className={[classes['search-bar'], searchBarThemeClass].join(' ')}>
-      <AiOutlineSearch className={classes['search-bar__icon']} />
+    <div className={[classes["search-bar"], searchBarThemeClass].join(" ")}>
+      <AiOutlineSearch className={classes["search-bar__icon"]} />
 
       <input
-        className={[classes['search-bar__input'], searchInputThemeClass].join(
-          ' '
+        className={[classes["search-bar__input"], searchInputThemeClass].join(
+          " "
         )}
-        placeholder='Search for a country...'
+        placeholder="Search for a country..."
         ref={inputRef}
         onChange={searchHandler}
       />
