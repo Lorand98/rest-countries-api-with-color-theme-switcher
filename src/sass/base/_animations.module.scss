@@ -1,5 +1,5 @@
-@use '../abstracts/mixins.module';
-@use '../abstracts/variables.module';
+@use "../abstracts/mixins.module";
+@use "../abstracts/variables.module";
 
 @keyframes skeleton-loading-light {
   0% {
@@ -18,5 +18,17 @@
 
   100% {
     background-color: variables.$color-very-dark-blue-animation-end;
+  }
+}
+
+@keyframes fade-in-from-right {
+  0% {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+
+  100% {
+    opacity: 100;
+    transform: translateX(0);
   }
 }

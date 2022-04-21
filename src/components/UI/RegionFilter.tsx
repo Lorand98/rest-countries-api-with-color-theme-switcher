@@ -1,11 +1,11 @@
-import { useContext, useState } from 'react';
-import { ThemeContext } from '../../context/theme-context';
-import classes from './RegionFilter.module.scss';
-import { MdKeyboardArrowDown } from 'react-icons/md';
-import { CountryRegions } from '../../types';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
-import { countryFilterActions } from '../../store/countryFilterSlice';
+import { useContext, useState } from "react";
+import { ThemeContext } from "../../context/theme-context";
+import classes from "./RegionFilter.module.scss";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { CountryRegions } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { countryFilterActions } from "../../store/countryFilterSlice";
 
 const RegionFilter: React.FC = () => {
   const [showList, setShowList] = useState(false);
@@ -26,36 +26,36 @@ const RegionFilter: React.FC = () => {
   const themeCtx = useContext(ThemeContext);
 
   const regionFilterHeaderThemeClasses = themeCtx.isLight
-    ? classes['filter__header--light']
-    : classes['filter__header--dark'];
+    ? classes["filter__header--light"]
+    : classes["filter__header--dark"];
 
   const regionFilterListThemeClasses = themeCtx.isLight
-    ? classes['filter__list--light']
-    : classes['filter__list--dark'];
+    ? classes["filter__list--light"]
+    : classes["filter__list--dark"];
 
   return (
-    <div className={classes['filter']}>
+    <div className={classes["filter"]}>
       <div
         className={[
-          classes['filter__header'],
+          classes["filter__header"],
           regionFilterHeaderThemeClasses,
-        ].join(' ')}
+        ].join(" ")}
         onClick={showListHandler}
       >
-        <span className={classes['filter__header__text']}>
+        <span className={classes["filter__header__text"]}>
           {filteredRegion}
         </span>
         <MdKeyboardArrowDown
-          className={classes['filter__header__arrow-down']}
+          className={classes["filter__header__arrow-down"]}
         />
       </div>
       {showList && (
-        <div className={classes['filter__list-wrapper']}>
+        <div className={classes["filter__list-wrapper"]}>
           <ul
             className={[
-              classes['filter__list'],
+              classes["filter__list"],
               regionFilterListThemeClasses,
-            ].join(' ')}
+            ].join(" ")}
           >
             {Object.keys(CountryRegions)
               .filter((countryRegionString) => {
@@ -65,7 +65,7 @@ const RegionFilter: React.FC = () => {
                   ] !== filteredRegion
                 );
               })
-              .map((countryRegionString) => {
+              .map((countryRegionString, index) => {
                 const countryRegion =
                   CountryRegions[
                     countryRegionString as keyof typeof CountryRegions
@@ -74,7 +74,9 @@ const RegionFilter: React.FC = () => {
                 return (
                   <li
                     key={countryRegion}
-                    className={classes['filter__list__element']}
+                    className={`${classes["filter__list__element"]} ${
+                      classes[`filter__list__element--${index}`]
+                    }`}
                     onClick={filterRegionHandler.bind(this, countryRegion)}
                   >
                     {countryRegion}

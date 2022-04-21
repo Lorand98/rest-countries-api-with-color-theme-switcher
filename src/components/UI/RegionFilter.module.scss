@@ -1,10 +1,12 @@
 @use "../../sass/abstracts/variables.module";
 @use "../../sass/abstracts/mixins.module";
+@use "../../sass/base/animations.module";
 
 $filter-header-and-list-padding: 1.5rem;
 $filter-header-and-list-box-shadow: 0.1rem 0.1rem 1rem
   variables.$shadow-light-black;
 $filter-header-and-list-border-radius: 0.5rem;
+$indexes: 0, 1, 2, 3, 4;
 
 .filter {
   max-width: 50%;
@@ -64,6 +66,13 @@ $filter-header-and-list-border-radius: 0.5rem;
 
       &:hover {
         transform: scale(1.2);
+      }
+
+      @each $index in $indexes {
+        &--#{$index} {
+          animation: fade-in-from-right 100ms linear backwards;
+          animation-delay: #{$index * 100}ms;
+        }
       }
     }
   }
