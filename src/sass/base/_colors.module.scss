@@ -11,7 +11,7 @@
 }
 
 .background {
-  transition: color 300ms, background-color 200ms;
+  transition: color 200ms, background-color 200ms;
   &--light {
     background-color: variables.$color-very-light-gray-light-bg;
   }
