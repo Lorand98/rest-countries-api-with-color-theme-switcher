@@ -1,44 +1,44 @@
-import { useContext } from 'react';
-import { ThemeContext } from '../../context/theme-context';
-import { Country } from '../../types';
-import LoadingSkeleton from '../UI/LoadingSkeleton';
+import { useContext } from "react";
+import { ThemeContext } from "../../context/theme-context";
+import { Country } from "../../types";
+import LoadingSkeleton from "../UI/LoadingSkeleton";
 
-import classes from './CountryListElement.module.scss';
+import classes from "./CountryListElement.module.scss";
 
 const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
   const themeCtx = useContext(ThemeContext);
   const countryThemeClass = themeCtx.isLight
-    ? classes['country--light']
-    : classes['country--dark'];
+    ? classes["country--light"]
+    : classes["country--dark"];
 
   if (!country) {
     return (
       <li
         className={[
-          classes['country'],
-          classes['country--skeleton'],
+          classes["country"],
+          classes["country--skeleton"],
           countryThemeClass,
-        ].join(' ')}
+        ].join(" ")}
       >
         <LoadingSkeleton
           isText={false}
-          className={classes['country--skeleton__skeleton']}
+          className={classes["country--skeleton__skeleton-flag"]}
         />
         <div
           className={[
-            classes['country__description'],
-            classes['country__description--skeleton'],
-          ].join(' ')}
+            classes["country__description"],
+            classes["country__description--skeleton"],
+          ].join(" ")}
         >
           <LoadingSkeleton
             isText={true}
-            className={classes['country__description--skeleton__name']}
+            className={classes["country__description--skeleton__name"]}
           />
           <div
             className={[
-              classes['country__description__details'],
-              classes['country__description__details--skeleton'],
-            ].join(' ')}
+              classes["country__description__details"],
+              classes["country__description__details--skeleton"],
+            ].join(" ")}
           >
             <LoadingSkeleton isText={true} />
             <LoadingSkeleton isText={true} />
@@ -51,47 +51,47 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
   }
 
   return (
-    <li className={[classes['country'], countryThemeClass].join(' ')}>
+    <li className={[classes["country"], countryThemeClass].join(" ")}>
       <img
         alt={`${country.name.common} flag`}
         src={country.flags.svg}
-        className={classes['country__flag']}
+        className={classes["country__flag"]}
       />
-      <div className={classes['country__description']}>
-        <div className={classes['country__description__name-wrapper']}>
-          <h1 className={classes['country__description__name']}>
+      <div className={classes["country__description"]}>
+        <div className={classes["country__description__name-wrapper"]}>
+          <h1 className={classes["country__description__name"]}>
             {country.name.common}
           </h1>
         </div>
-        <div className={classes['country__description__details']}>
-          <p className={classes['country__description__details__property']}>
+        <div className={classes["country__description__details"]}>
+          <p className={classes["country__description__details__property"]}>
             <span
               className={
-                classes['country__description__details__property__name']
+                classes["country__description__details__property__name"]
               }
             >
               Population:
-            </span>{' '}
-            {country.population.toLocaleString('en-US')}
+            </span>{" "}
+            {country.population.toLocaleString("en-US")}
           </p>
-          <p className={classes['country__description__details__property']}>
+          <p className={classes["country__description__details__property"]}>
             <span
               className={
-                classes['country__description__details__property__name']
+                classes["country__description__details__property__name"]
               }
             >
               Region:
-            </span>{' '}
+            </span>{" "}
             {country.region}
           </p>
-          <p className={classes['country__description__details__property']}>
+          <p className={classes["country__description__details__property"]}>
             <span
               className={
-                classes['country__description__details__property__name']
+                classes["country__description__details__property__name"]
               }
             >
               Capital:
-            </span>{' '}
+            </span>{" "}
             {country.capital}
           </p>
         </div>
