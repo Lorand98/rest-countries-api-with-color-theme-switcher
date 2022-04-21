@@ -1,4 +1,4 @@
-@use '../abstracts/variables.module';
+@use "../abstracts/variables.module";
 
 .text {
   &--light {
@@ -11,6 +11,7 @@
 }
 
 .background {
+  transition: color 300ms, background-color 200ms;
   &--light {
     background-color: variables.$color-very-light-gray-light-bg;
   }
