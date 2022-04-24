@@ -2,7 +2,9 @@ import classes from './App.module.scss';
 import { ThemeContext } from './context/theme-context';
 import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import MainPage from './pages/MainPage';
+import Header from './components/Layout/Header/Header';
+import CountryListPage from './pages/CountryListPage';
+import CountryDetailsPage from './pages/CountryDetailsPage';
 
 function App() {
   const themeCtx = useContext(ThemeContext);
@@ -17,8 +19,10 @@ function App() {
   //TODO: 404 page
   return (
     <div className={[backgroundThemeClass, textThemeClass].join(' ')}>
+      <Header />
       <Routes>
-        <Route path='/' element={<MainPage />} />
+        <Route path='/' element={<CountryListPage />} />
+        <Route path='/:cca2' element={<CountryDetailsPage />} />
       </Routes>
     </div>
   );
