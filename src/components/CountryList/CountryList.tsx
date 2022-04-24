@@ -13,7 +13,7 @@ import CountryListElement from './CountryListElement';
 import classes from './CountryList.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
-import { countryActions } from '../../store/countrySlice';
+import { countryListActions } from '../../store/countrySlice';
 import Alert from '../UI/Alert';
 import { AlertSeverity } from '../../types';
 
@@ -63,7 +63,7 @@ const CountryList: React.FC = () => {
       const loadCountries = (loadedCountries: Country[]) => {
         const validCountries = validateCountries(loadedCountries);
 
-        dispatch(countryActions.setCountries(validCountries));
+        dispatch(countryListActions.setCountries(validCountries));
       };
 
       sendRequest(`${COUNTRIES_API}${COUNTRIES_API_ALL_PARAMS}`, loadCountries);

@@ -20,6 +20,16 @@ export interface Country {
   independent?: boolean;
 }
 
+export interface DetailedCountry extends Country {
+  subregion: string;
+  tld: string;
+  currencies: {
+    name: string;
+    symbol: string;
+  }[];
+  languages: string[];
+}
+
 export enum CountryRegions {
   ALL = 'Filter by Region',
   AFRICA = 'Africa',

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Country } from '../types';
 
-const countrySlice = createSlice({
+const countryListSlice = createSlice({
   name: 'countries',
   initialState: { countries: [] as Country[] },
   reducers: {
@@ -11,6 +11,6 @@ const countrySlice = createSlice({
   },
 });
 
-export const countryActions = countrySlice.actions;
+export const countryListActions = countryListSlice.actions;
 
-export default countrySlice.reducer;
+export default countryListSlice.reducer;
