@@ -12,6 +12,10 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
     ? classes['country--light']
     : classes['country--dark'];
 
+  const linkThemeClass = themeCtx.isLight
+    ? classes['a--light']
+    : classes['a--dark'];
+
   if (!country) {
     return (
       <li
@@ -53,7 +57,7 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
 
   return (
     <li className={[classes['country'], countryThemeClass].join(' ')}>
-      <Link to={country.cca2}>
+      <Link to={country.cca2} className={linkThemeClass}>
         <img
           alt={`${country.name.common} flag`}
           src={country.flags.svg}

@@ -35,6 +35,7 @@
 // }
 
 @mixin element-background-theme-classes() {
+  transition: background-color 300ms;
   &--light {
     background-color: variables.$color-white-dark-mode-text-light-els;
   }

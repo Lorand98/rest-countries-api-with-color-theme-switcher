@@ -1,5 +1,6 @@
-@use "../../sass/abstracts/variables.module";
-@use "../../sass/abstracts/mixins.module";
+@use '../../sass/abstracts/variables.module';
+@use '../../sass/abstracts/mixins.module';
+@use '../../sass/base/colors.module';
 
 .country {
   background-color: variables.$color-white-dark-mode-text-light-els;
