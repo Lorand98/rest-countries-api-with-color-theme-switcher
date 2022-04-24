@@ -40,8 +40,6 @@ const validateCountries = (countries: Country[]) => {
   return validCountries;
 };
 
-let initialRun = true;
-
 const CountryList: React.FC = () => {
   const { countries } = useSelector((state: RootState) => state.countries);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
@@ -70,17 +68,11 @@ const CountryList: React.FC = () => {
       dispatch(countryActions.setCountries(validCountries));
     };
 
-    sendRequest(`${COUNTRIES_API}${COUNTRIES_API_ALL_PARAMS}`, loadCountries);
-  }, [sendRequest, dispatch]);
-
-  useEffect(() => {
-    if (initialRun) {
-      initialRun = false;
-      return;
+    if (countries.length === 0) {
+      sendRequest(`${COUNTRIES_API}${COUNTRIES_API_ALL_PARAMS}`, loadCountries);
     }
-
     setFilteredCountries(countries);
-  }, [countries]);
+  }, [sendRequest, dispatch, countries]);
 
   useEffect(() => {
     const searchedCountryLowerCase = searchedCountry.toLowerCase();

@@ -1,7 +1,4 @@
-import CountryList from './components/CountryList/CountryList';
 import classes from './App.module.scss';
-import Header from './components/Layout/Header/Header';
-import SearchBar from './components/UI/SearchBar';
 import { ThemeContext } from './context/theme-context';
 import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
