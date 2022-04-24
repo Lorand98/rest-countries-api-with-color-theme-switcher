@@ -48,9 +48,6 @@ const CountryList: React.FC = () => {
   const { filteredRegion, searchedCountry } = useSelector(
     (state: RootState) => state.countryFilter
   );
-
-  //TODO: Are these UseEffects alright? Is it ok to use 3 useffects in the same component for different tasks? Only the first performs sideeffect
-
   //TODO: create tests for checking if the filter/search function works - with dummy data
 
   //TODO: outsource filter/search logic to an external function, and call only that function from the useEffect
@@ -62,16 +59,17 @@ const CountryList: React.FC = () => {
   const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
 
   useEffect(() => {
-    const loadCountries = (loadedCountries: Country[]) => {
-      const validCountries = validateCountries(loadedCountries);
-
-      dispatch(countryActions.setCountries(validCountries));
-    };
-
     if (countries.length === 0) {
+      const loadCountries = (loadedCountries: Country[]) => {
+        const validCountries = validateCountries(loadedCountries);
+
+        dispatch(countryActions.setCountries(validCountries));
+      };
+
       sendRequest(`${COUNTRIES_API}${COUNTRIES_API_ALL_PARAMS}`, loadCountries);
+    } else {
+      setFilteredCountries(countries);
     }
-    setFilteredCountries(countries);
   }, [sendRequest, dispatch, countries]);
 
   useEffect(() => {
@@ -80,24 +78,21 @@ const CountryList: React.FC = () => {
     if (filteredRegion !== CountryRegions.ALL) {
       if (searchedCountryLowerCase.trim() !== '') {
         setFilteredCountries(
-          countries.filter((country) => {
-            return (
+          countries.filter(
+            (country) =>
               country.region.includes(filteredRegion) &&
               country.name.common
                 .toLowerCase()
                 .includes(searchedCountryLowerCase)
-              // ||
-              // country.name.official
-              //   .toLowerCase()
-              //   .includes(searchedCountryLowerCase)
-            );
-          })
+            // ||
+            // country.name.official
+            //   .toLowerCase()
+            //   .includes(searchedCountryLowerCase)
+          )
         );
       } else {
         setFilteredCountries(
-          countries.filter((country) => {
-            return country.region.includes(filteredRegion);
-          })
+          countries.filter((country) => country.region.includes(filteredRegion))
         );
       }
     }

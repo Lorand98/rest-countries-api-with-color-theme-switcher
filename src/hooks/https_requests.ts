@@ -41,5 +41,7 @@ export const useHttpRequest = <T>() => {
     sendRequest,
     isLoading,
     error,
+    setIsLoading,
+    setError,
   };
 };

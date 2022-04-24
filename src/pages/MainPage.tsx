@@ -1,5 +1,6 @@
 import CountryList from '../components/CountryList/CountryList';
 import Header from '../components/Layout/Header/Header';
+import RegionFilter from '../components/UI/RegionFilter';
 import SearchBar from '../components/UI/SearchBar';
 
 const MainPage: React.FC = () => {
@@ -7,6 +8,7 @@ const MainPage: React.FC = () => {
     <>
       <Header />
       <SearchBar />
+      <RegionFilter />
       <CountryList />
     </>
   );
