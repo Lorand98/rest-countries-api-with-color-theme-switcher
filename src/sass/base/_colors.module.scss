@@ -1,6 +1,6 @@
 @use '../abstracts/variables.module';
 
-$trainsition-time: 300ms;
+$transition-time: 200ms;
 
 .text {
   &--light {
@@ -13,7 +13,7 @@ $trainsition-time: 300ms;
 }
 
 .background {
-  transition: color $trainsition-time, background-color $trainsition-time;
+  transition: color $transition-time, background-color $transition-time;
   &--light {
     background-color: variables.$color-very-light-gray-light-bg;
   }
@@ -24,7 +24,7 @@ $trainsition-time: 300ms;
 }
 
 .a {
-  transition: color $trainsition-time;
+  transition: color $transition-time;
   &--light {
     color: variables.$color-very-dark-blue-light-text;
   }
