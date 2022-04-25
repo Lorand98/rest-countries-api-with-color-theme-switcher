@@ -24,22 +24,27 @@ export interface DetailedCountry extends Country {
   subregion: string;
   tld: string;
   currencies: {
-    name: string;
-    symbol: string;
-  }[];
-  languages: string[];
+    [key: string]: {
+      name: string;
+      symbol: string;
+    };
+  };
+  languages: {
+    [key: string]: string;
+  };
+  borders: string[];
 }
 
 export enum CountryRegions {
-  ALL = 'Filter by Region',
-  AFRICA = 'Africa',
-  AMERICA = 'America',
-  ASIA = 'Asia',
-  EUROPE = 'Europe',
-  OCEANIA = 'Oceania',
+  ALL = "Filter by Region",
+  AFRICA = "Africa",
+  AMERICA = "America",
+  ASIA = "Asia",
+  EUROPE = "Europe",
+  OCEANIA = "Oceania",
 }
 
 export enum AlertSeverity {
-  SEVERE = 'SEVERE',
-  LOW = 'LOW',
+  SEVERE = "SEVERE",
+  LOW = "LOW",
 }
