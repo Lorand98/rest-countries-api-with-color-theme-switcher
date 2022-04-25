@@ -57,7 +57,7 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
 
   return (
     <li className={[classes['country'], countryThemeClass].join(' ')}>
-      <Link to={country.cca2} className={linkThemeClass} state={country}>
+      <Link to={country.cca3} className={linkThemeClass} state={country}>
         <img
           alt={`${country.name.common} flag`}
           src={country.flags.svg}

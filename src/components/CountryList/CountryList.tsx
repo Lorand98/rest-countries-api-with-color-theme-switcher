@@ -25,7 +25,7 @@ const validateCountries = (countries: Country[]) => {
         official: country.name.official || UNKNOWN,
         nativeName: country.name.nativeName,
       },
-      cca2: country.cca2,
+      cca3: country.cca3,
       capital: country.capital || UNKNOWN,
       region: country.region || UNKNOWN,
       subregion: country.subregion || UNKNOWN,
@@ -149,7 +149,7 @@ const CountryList: React.FC = () => {
           </>
         ) : (
           filteredCountries.map((country: Country) => (
-            <CountryListElement key={country.cca2} country={country} />
+            <CountryListElement key={country.cca3} country={country} />
           ))
         )}
       </ul>

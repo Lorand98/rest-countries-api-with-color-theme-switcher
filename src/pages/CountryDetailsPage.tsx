@@ -1,7 +1,7 @@
-import Country from '../components/Country/Country';
+import CountryDetails from '../components/Country/CountryDetails';
 
 const CountryDetailsPage: React.FC = (props) => {
-  return <Country />;
+  return <CountryDetails />;
 };
 
 export default CountryDetailsPage;

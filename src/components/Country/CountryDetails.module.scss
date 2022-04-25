@@ -1,0 +1,71 @@
+@use '../../sass/abstracts/mixins.module';
+@use '../../sass/abstracts/variables.module';
+@use '../../sass/base/colors.module';
+
+.country {
+  padding-inline: 8%;
+  &__back-btn {
+    cursor: pointer;
+
+    padding: 0.2rem 1.8rem;
+    border: none;
+    display: flex;
+    gap: 1rem;
+    width: min-content;
+    align-items: center;
+    box-shadow: -0.1rem -0.1rem 0.5rem 0.1rem variables.$shadow-light-black,
+      0.1rem 0.1rem 0.5rem 0.1rem variables.$shadow-light-black;
+
+    @include mixins.element-background-theme-classes;
+
+    &__icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__flag {
+    max-width: 100%;
+    margin: 5rem 0 3rem;
+    box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      line-height: 3.2rem;
+
+      &__property {
+        &__name {
+          font-weight: 600;
+        }
+      }
+    }
+
+    &__borders {
+      &__links {
+        margin: 1rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        gap: 2rem;
+
+        &__link {
+          @include mixins.element-background-theme-classes;
+          font-size: 1.2;
+          flex: 0 0 10rem;
+          border-radius: 0.25rem;
+          text-align: center;
+          box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
+        }
+      }
+    }
+  }
+}
