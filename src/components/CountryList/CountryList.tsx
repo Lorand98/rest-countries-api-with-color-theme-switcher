@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  COUNTRIES_API,
+  COUNTRIES_API_ALL,
   COUNTRIES_API_ALL_PARAMS,
   LOADING_COUNTRY_SKELETONS,
   NO_COUNTRIES_ALERT_MSG,
@@ -13,7 +13,7 @@ import CountryListElement from './CountryListElement';
 import classes from './CountryList.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
-import { countryListActions } from '../../store/countrySlice';
+import { countryListActions } from '../../store/countryListSlice';
 import Alert from '../UI/Alert';
 import { AlertSeverity } from '../../types';
 
@@ -28,11 +28,20 @@ const validateCountries = (countries: Country[]) => {
       cca2: country.cca2,
       capital: country.capital || UNKNOWN,
       region: country.region || UNKNOWN,
+      subregion: country.subregion || UNKNOWN,
       population: country.population ?? UNKNOWN,
       flags: {
         svg: country.flags.svg,
         png: country.flags.png,
       },
+      tld: country.tld || UNKNOWN,
+      currencies: {
+        ...country.currencies,
+      },
+      languages: {
+        ...country.languages,
+      },
+      borders: [...country.borders],
     };
 
     return validCountry;
@@ -66,7 +75,10 @@ const CountryList: React.FC = () => {
         dispatch(countryListActions.setCountries(validCountries));
       };
 
-      sendRequest(`${COUNTRIES_API}${COUNTRIES_API_ALL_PARAMS}`, loadCountries);
+      sendRequest(
+        `${COUNTRIES_API_ALL}${COUNTRIES_API_ALL_PARAMS}`,
+        loadCountries
+      );
     } else {
       setFilteredCountries(countries);
     }

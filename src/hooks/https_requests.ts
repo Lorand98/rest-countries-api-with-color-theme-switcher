@@ -22,14 +22,11 @@ export const useHttpRequest = <T>() => {
 
         callbackFn(result);
       } catch (error) {
-        console.log();
-        let errorMsg = 'An error occured.';
-        if (error instanceof Error) {
-          if (error.name === 'TypeError') {
-            errorMsg = `${error.message}. Please check your internet connection!`;
-          }
-        }
-        setError(errorMsg);
+        // if (error instanceof Error) {
+        setError(
+          'Something went wrong. Please check your internet connection or try again later.'
+        );
+        // }
       } finally {
         setIsLoading(false);
       }

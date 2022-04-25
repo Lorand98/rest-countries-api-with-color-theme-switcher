@@ -18,9 +18,6 @@ export interface Country {
     png: string;
   };
   independent?: boolean;
-}
-
-export interface DetailedCountry extends Country {
   subregion: string;
   tld: string;
   currencies: {
@@ -36,15 +33,15 @@ export interface DetailedCountry extends Country {
 }
 
 export enum CountryRegions {
-  ALL = "Filter by Region",
-  AFRICA = "Africa",
-  AMERICA = "America",
-  ASIA = "Asia",
-  EUROPE = "Europe",
-  OCEANIA = "Oceania",
+  ALL = 'Filter by Region',
+  AFRICA = 'Africa',
+  AMERICA = 'America',
+  ASIA = 'Asia',
+  EUROPE = 'Europe',
+  OCEANIA = 'Oceania',
 }
 
 export enum AlertSeverity {
-  SEVERE = "SEVERE",
-  LOW = "LOW",
+  SEVERE = 'SEVERE',
+  LOW = 'LOW',
 }
