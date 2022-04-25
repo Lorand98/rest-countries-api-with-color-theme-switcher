@@ -3,12 +3,10 @@ export interface Country {
     common: string;
     official: string;
     nativeName: {
-      [key: string]:
-        | {
-            official: string;
-            common: string;
-          }
-        | string;
+      [key: string]: {
+        official: string;
+        common: string;
+      };
     };
   };
   cca3: string;
@@ -33,6 +31,11 @@ export interface Country {
   };
   borders: string[];
 }
+
+export type CountryBorder = {
+  cca3: string;
+  name: Country['name'];
+};
 
 export enum CountryRegions {
   ALL = 'Filter by Region',

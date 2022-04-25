@@ -16,36 +16,12 @@ import { AppDispatch, RootState } from '../../store';
 import { countryListActions } from '../../store/countryListSlice';
 import Alert from '../UI/Alert';
 import { AlertSeverity } from '../../types';
+import { validateCountry } from '../../helpers';
 
 const validateCountries = (countries: Country[]) => {
-  const validCountries: Country[] = countries.map((country: Country) => {
-    const validCountry: Country = {
-      name: {
-        common: country.name.common || UNKNOWN,
-        official: country.name.official || UNKNOWN,
-        nativeName: country.name.nativeName,
-      },
-      cca3: country.cca3,
-      capital: country.capital || UNKNOWN,
-      region: country.region || UNKNOWN,
-      subregion: country.subregion || UNKNOWN,
-      population: country.population ?? UNKNOWN,
-      flags: {
-        svg: country.flags.svg,
-        png: country.flags.png,
-      },
-      tld: country.tld || UNKNOWN,
-      currencies: {
-        ...country.currencies,
-      },
-      languages: {
-        ...country.languages,
-      },
-      borders: [...country.borders],
-    };
-
-    return validCountry;
-  });
+  const validCountries: Country[] = countries.map((country: Country) =>
+    validateCountry(country)
+  );
   return validCountries;
 };
 

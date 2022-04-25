@@ -24,22 +24,44 @@
     }
   }
 
+  &__alert {
+    margin-top: 10rem;
+  }
+
   &__flag {
     max-width: 100%;
     margin: 5rem 0 3rem;
     box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
+
+    &--skeleton {
+      height: 23rem;
+    }
   }
 
   &__description {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    &__name {
+      &--skeleton {
+        width: 20%;
+      }
+    }
 
     &__details {
       display: flex;
       flex-direction: column;
       gap: 3rem;
-      line-height: 3.2rem;
+
+      & > * {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      &--skeleton {
+        width: 30%;
+      }
 
       &__property {
         &__name {
