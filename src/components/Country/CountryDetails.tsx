@@ -74,6 +74,8 @@ const Countrydescription__details: React.FC = (props) => {
   const isLoading =
     countryIsLoading || bordersIsLoading || country === undefined;
 
+  console.log(bordersIsLoading);
+
   let alert = null;
   if (fetchCountryError) {
     alert = (
@@ -87,15 +89,19 @@ const Countrydescription__details: React.FC = (props) => {
   }
 
   return (
-    <div className={classes["country"]}>
+    <div className={classes["country-wrapper"]}>
       <Link
-        className={[classes["country__back-btn"], backBtnThemeClass].join(" ")}
+        className={[
+          classes["country-wrapper__back-btn"],
+          backBtnThemeClass,
+        ].join(" ")}
         to="/"
       >
-        <BiArrowBack className={classes["country__back-btn__icon"]} /> Back
+        <BiArrowBack className={classes["country-wrapper__back-btn__icon"]} />{" "}
+        Back
       </Link>
       {alert ?? (
-        <>
+        <div className={classes["country"]}>
           <>
             {isLoading ? (
               <LoadingSkeleton
@@ -311,7 +317,7 @@ const Countrydescription__details: React.FC = (props) => {
               </div>
             )}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

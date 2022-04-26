@@ -1,13 +1,15 @@
 @use "../abstracts/mixins.module";
 @use "../abstracts/variables.module";
 @use "../../sass/base/colors.module";
+@use "../../sass/base/animations.module";
 
-.country {
+.country-wrapper {
   padding-inline: 8%;
   &__back-btn {
     cursor: pointer;
-
+    margin-top: 4rem;
     padding: 0.2rem 1.8rem;
+
     border: none;
     display: flex;
     gap: 1rem;
@@ -23,6 +25,22 @@
       height: 1.5rem;
     }
   }
+}
+
+.country {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  row-gap: 3rem;
+  column-gap: 10rem;
+
+  margin-top: 5rem;
+  @include mixins.respond(tab-land) {
+    grid-template-columns: 3fr 4fr;
+  }
+  @include mixins.respond(desktop) {
+    grid-template-columns: 3fr 4fr;
+  }
 
   &__alert {
     margin-top: 10rem;
@@ -30,9 +48,7 @@
 
   &__flag {
     max-width: 100%;
-    margin: 5rem 0 3rem;
     box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
-
     &--skeleton {
       height: 23rem;
     }
@@ -42,6 +58,15 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    @include mixins.respond(tab-land) {
+      gap: 5rem;
+    }
+
+    @include mixins.respond(desktop) {
+      gap: 5rem;
+    }
+
     &__name {
       &--skeleton {
         width: 20%;
@@ -52,6 +77,16 @@
       display: flex;
       flex-direction: column;
       gap: 3rem;
+
+      @include mixins.respond(tab-land) {
+        flex-direction: row;
+        gap: 10rem;
+      }
+
+      @include mixins.respond(desktop) {
+        flex-direction: row;
+        gap: 10rem;
+      }
 
       & > * {
         display: flex;
@@ -86,6 +121,7 @@
           border-radius: 0.25rem;
           text-align: center;
           box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
+          animation: fade-in 500ms;
         }
       }
     }
