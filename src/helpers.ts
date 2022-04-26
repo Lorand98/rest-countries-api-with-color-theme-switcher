@@ -1,5 +1,5 @@
-import { Country } from './types';
-import { UNKNOWN } from './constants';
+import { Country } from "./types";
+import { UNKNOWN } from "./constants";
 
 export const validateCountry = (country: Country) => {
   const validCountry: Country = {
@@ -28,4 +28,11 @@ export const validateCountry = (country: Country) => {
   };
 
   return validCountry;
+};
+
+export const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 };
