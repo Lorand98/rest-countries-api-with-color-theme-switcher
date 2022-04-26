@@ -9,9 +9,9 @@ $filter-header-and-list-border-radius: 0.5rem;
 $indexes: 0, 1, 2, 3, 4;
 
 .filter {
+  min-width: 20%;
   max-width: 50%;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+
   font-size: 1.2rem;
   font-weight: 600;
 

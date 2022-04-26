@@ -2,9 +2,9 @@
 @use "../abstracts/mixins.module";
 
 .search-bar {
-  margin-bottom: 4rem;
   padding: 1.4rem 3rem;
-  max-width: 90%;
+  min-width: 40%;
+
   border-radius: 0.6rem;
   display: flex;
   justify-content: flex-start;

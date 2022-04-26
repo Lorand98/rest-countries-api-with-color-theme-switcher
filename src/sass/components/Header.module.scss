@@ -6,9 +6,8 @@
   min-height: 6rem;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
+  padding: 2rem 5%;
 
-  margin: 0 0 2.4rem 0;
   box-shadow: 0 0.1rem 0.8rem variables.$shadow-light-black;
 
   @include mixins.element-background-theme-classes;

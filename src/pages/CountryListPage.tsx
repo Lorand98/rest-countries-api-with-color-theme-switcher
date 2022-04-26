@@ -1,13 +1,11 @@
 import CountryList from "../components/CountryList/CountryList";
-import RegionFilter from "../components/UI/RegionFilter";
-import SearchBar from "../components/UI/SearchBar";
+import Filter from "../components/UI/Filter";
 
 const CountryListPage: React.FC = () => {
   return (
     <>
       <div style={{ padding: "0 5%" }}>
-        <SearchBar />
-        <RegionFilter />
+        <Filter />
         <CountryList />
       </div>
     </>
