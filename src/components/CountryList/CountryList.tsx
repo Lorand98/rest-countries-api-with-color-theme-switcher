@@ -9,7 +9,7 @@ import { useHttpRequest } from "../../hooks/https_requests";
 import { Country, CountryRegions } from "../../types";
 import CountryListElement from "./CountryListElement";
 
-import classes from "./CountryList.module.scss";
+import classes from "../../sass/components/CountryList.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { countryListActions } from "../../store/countryListSlice";

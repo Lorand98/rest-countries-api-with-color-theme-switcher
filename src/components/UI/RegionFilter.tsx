@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/theme-context";
-import classes from "./RegionFilter.module.scss";
+import classes from "../../sass/components/RegionFilter.module.scss";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { CountryRegions } from "../../types";
 import { useDispatch, useSelector } from "react-redux";

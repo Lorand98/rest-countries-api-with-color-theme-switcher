@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import classes from "./CountryDetails.module.scss";
+import classes from "../../sass/components/CountryDetails.module.scss";
 import { BiArrowBack } from "react-icons/bi";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../context/theme-context";

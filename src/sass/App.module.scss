@@ -1,0 +1,8 @@
+@use "./base/base.module";
+@use "./base/colors.module";
+@use "./base/typography.module";
+@use "./abstracts/variables.module";
+
+.background {
+  min-height: 100vh;
+}

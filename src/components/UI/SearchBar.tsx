@@ -1,10 +1,10 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeContext } from "../../context/theme-context";
 import { AppDispatch, RootState } from "../../store";
 import { countryFilterActions } from "../../store/countryFilterSlice";
-import classes from "./SearchBar.module.scss";
+import classes from "../../sass/components/SearchBar.module.scss";
 
 const SearchBar: React.FC = () => {
   const themeCtx = useContext(ThemeContext);

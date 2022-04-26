@@ -1,6 +1,6 @@
-@use '../../sass/abstracts/mixins.module';
-@use '../../sass/abstracts/variables.module';
-@use '../../sass/base/colors.module';
+@use "../abstracts/mixins.module";
+@use "../abstracts/variables.module";
+@use "../../sass/base/colors.module";
 
 .country {
   padding-inline: 8%;
