@@ -13,10 +13,12 @@
   }
 
   @include mixins.respond(tab-land) {
+    margin: 5rem 0;
     justify-content: space-between;
     flex-direction: row;
   }
   @include mixins.respond(desktop) {
+    margin: 5rem 0;
     justify-content: space-between;
     flex-direction: row;
   }

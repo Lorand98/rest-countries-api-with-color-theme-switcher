@@ -6,7 +6,10 @@ import { ThemeContext } from "../../context/theme-context";
 import { Link } from "react-router-dom";
 import { AlertSeverity, Country, CountryBorder } from "../../types";
 import { useHttpRequest } from "../../hooks/https_requests";
-import { COUNTRIES_API_COUNTRY } from "../../constants";
+import {
+  COUNTRIES_API_ALL_PARAMS,
+  COUNTRIES_API_COUNTRY,
+} from "../../constants";
 import { scrollToTop, validateCountry } from "../../helpers";
 import LoadingSkeleton from "../UI/LoadingSkeleton";
 import Alert from "../UI/Alert";
@@ -18,14 +21,14 @@ const Countrydescription__details: React.FC = (props) => {
     sendRequest: sendRequestCountry,
     isLoading: countryIsLoading,
     error: fetchCountryError,
-  } = useHttpRequest<Country[]>();
+  } = useHttpRequest<Country>();
   const { sendRequest: sendRequestBorders, isLoading: bordersIsLoading } =
     useHttpRequest<CountryBorder>();
   const [country, setCountry] = useState<Country>();
   const [borders, setBorders] = useState<CountryBorder[]>([]);
 
-  const setValidCountry = (country: Country[]) => {
-    const validCountry = validateCountry(country[0]);
+  const setValidCountry = (country: Country) => {
+    const validCountry = validateCountry(country);
 
     setCountry(validCountry);
   };
@@ -34,7 +37,10 @@ const Countrydescription__details: React.FC = (props) => {
     setCountry(undefined);
     setBorders([]);
     scrollToTop();
-    sendRequestCountry(`${COUNTRIES_API_COUNTRY}${cca3}`, setValidCountry);
+    sendRequestCountry(
+      `${COUNTRIES_API_COUNTRY}${cca3}${COUNTRIES_API_ALL_PARAMS}`,
+      setValidCountry
+    );
   }, [sendRequestCountry, cca3]);
 
   useEffect(() => {
