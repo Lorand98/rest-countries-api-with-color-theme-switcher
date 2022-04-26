@@ -234,8 +234,6 @@ const Countrydescription__details: React.FC = (props) => {
                     <LoadingSkeleton isText={true} />
                     <LoadingSkeleton isText={true} />
                     <LoadingSkeleton isText={true} />
-                    <LoadingSkeleton isText={true} />
-                    <LoadingSkeleton isText={true} />
                   </>
                 ) : (
                   <>

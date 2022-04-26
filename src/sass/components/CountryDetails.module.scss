@@ -50,7 +50,7 @@
     max-width: 100%;
     box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
     &--skeleton {
-      height: 23rem;
+      height: 30rem;
     }
   }
 
@@ -74,18 +74,20 @@
     }
 
     &__details {
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      row-gap: 3rem;
 
       @include mixins.respond(tab-land) {
+        grid-template-columns: 1fr 1fr;
         flex-direction: row;
-        gap: 10rem;
+        column-gap: 10rem;
       }
 
       @include mixins.respond(desktop) {
+        grid-template-columns: 1fr 1fr;
         flex-direction: row;
-        gap: 10rem;
+        column-gap: 10rem;
       }
 
       & > * {
