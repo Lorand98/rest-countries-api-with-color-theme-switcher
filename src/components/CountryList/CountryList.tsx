@@ -89,9 +89,11 @@ const CountryList: React.FC = () => {
         setFilteredCountries(
           countries.filter(
             (country) =>
-              country.name.common.toLowerCase().includes(searchedCountry)
+              country.name.common
+                .toLowerCase()
+                .includes(searchedCountryLowerCase)
             // ||
-            // country.name.official.toLowerCase().includes(searchedCountry)
+            // country.name.official.toLowerCase().includes(searchedCountryLowerCase)
           )
         );
       } else {
