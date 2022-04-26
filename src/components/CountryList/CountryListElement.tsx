@@ -21,7 +21,7 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
       >
         <LoadingSkeleton
           isText={false}
-          className={classes["country--skeleton__skeleton-flag"]}
+          className={classes["country__flag--skeleton"]}
         />
         <div
           className={[
@@ -52,11 +52,13 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
   return (
     <Card className={classes["country"]}>
       <Link to={country.cca3} className={linkThemeClass}>
-        <img
-          alt={`${country.name.common} flag`}
-          src={country.flags.svg}
-          className={classes["country__flag"]}
-        />
+        <div className={classes["country__flag-wrapper"]}>
+          <img
+            alt={`${country.name.common} flag`}
+            src={country.flags.svg}
+            className={classes["country__flag"]}
+          />
+        </div>
         <div className={classes["country__description"]}>
           <div className={classes["country__description__name-wrapper"]}>
             <h1 className={classes["country__description__name"]}>

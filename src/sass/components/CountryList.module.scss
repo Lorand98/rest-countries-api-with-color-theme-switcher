@@ -6,6 +6,21 @@
   padding: 0 15%;
   list-style: none;
   row-gap: 4rem;
+  column-gap: 4rem;
+  align-items: stretch;
 
   @include mixins.element-background-theme-classes;
+
+  @include mixins.respond(tab) {
+    padding: 0;
+    grid-template-columns: 1fr 1fr;
+  }
+  @include mixins.respond(tab-land) {
+    padding: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @include mixins.respond(desktop) {
+    padding: 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }

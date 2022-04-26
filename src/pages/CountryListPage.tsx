@@ -5,9 +5,11 @@ import SearchBar from "../components/UI/SearchBar";
 const CountryListPage: React.FC = () => {
   return (
     <>
-      <SearchBar />
-      <RegionFilter />
-      <CountryList />
+      <div style={{ padding: "0 5%" }}>
+        <SearchBar />
+        <RegionFilter />
+        <CountryList />
+      </div>
     </>
   );
 };
