@@ -5,12 +5,10 @@ import { Country } from "../../types";
 import LoadingSkeleton from "../UI/LoadingSkeleton";
 
 import classes from "../../sass/components/CountryListElement.module.scss";
+import Card from "../UI/Card";
 
 const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
   const themeCtx = useContext(ThemeContext);
-  const countryThemeClass = themeCtx.isLight
-    ? classes["country--light"]
-    : classes["country--dark"];
 
   const linkThemeClass = themeCtx.isLight
     ? classes["a--light"]
@@ -18,12 +16,8 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
 
   if (!country) {
     return (
-      <li
-        className={[
-          classes["country"],
-          classes["country--skeleton"],
-          countryThemeClass,
-        ].join(" ")}
+      <Card
+        className={[classes["country"], classes["country--skeleton"]].join(" ")}
       >
         <LoadingSkeleton
           isText={false}
@@ -50,13 +44,13 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
             <LoadingSkeleton isText={true} />
           </div>
         </div>
-      </li>
+      </Card>
     );
   } else {
   }
 
   return (
-    <li className={[classes["country"], countryThemeClass].join(" ")}>
+    <Card className={classes["country"]}>
       <Link to={country.cca3} className={linkThemeClass}>
         <img
           alt={`${country.name.common} flag`}
@@ -103,7 +97,7 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
           </div>
         </div>
       </Link>
-    </li>
+    </Card>
   );
 };
 

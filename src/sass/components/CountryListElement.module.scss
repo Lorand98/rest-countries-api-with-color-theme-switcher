@@ -4,14 +4,12 @@
 @use "../base/animations.module";
 
 .country {
-  background-color: variables.$color-white-dark-mode-text-light-els;
   box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
-  border-radius: 0.8rem;
-  overflow: hidden;
+
   display: flex;
   flex-direction: column;
   gap: 0;
-  min-height: 34rem;
+
   transition: opacity 0.3s;
 
   @include mixins.element-background-theme-classes;
