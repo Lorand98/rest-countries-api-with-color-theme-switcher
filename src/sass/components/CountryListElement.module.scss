@@ -1,6 +1,7 @@
 @use "../abstracts/variables.module";
 @use "../abstracts/mixins.module";
-@use "../../sass/base/colors.module";
+@use "../base/colors.module";
+@use "../base/animations.module";
 
 .country {
   background-color: variables.$color-white-dark-mode-text-light-els;
@@ -14,6 +15,8 @@
   transition: opacity 0.3s;
 
   @include mixins.element-background-theme-classes;
+
+  animation: fade-in 400ms;
 
   &--skeleton {
     gap: 1rem;
