@@ -1,5 +1,5 @@
-@use "../abstracts/variables.module";
-@use "../abstracts/mixins.module";
+@use '../abstracts/variables.module';
+@use '../abstracts/mixins.module';
 
 .search-bar {
   padding: 1.4rem 3rem;
@@ -23,6 +23,7 @@
     border: none;
     font-size: 1.2rem;
     background-color: inherit;
+    flex: 1;
 
     &:focus {
       outline: none;
