@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import {
   COUNTRIES_API_ALL,
   COUNTRIES_API_ALL_PARAMS,
-  COUNTRIES_NR_ON_A_PAGE,
   LOADING_COUNTRY_SKELETONS,
   NO_COUNTRIES_ALERT_MSG,
 } from '../../constants';
@@ -25,7 +24,7 @@ const validateCountries = (countries: Country[]) => {
   return validCountries;
 };
 
-const CountryList: React.FC<{ currentPage?: number }> = ({ currentPage }) => {
+const CountryList: React.FC = () => {
   const { countries } = useSelector((state: RootState) => state.countries);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
   const dispatch = useDispatch<AppDispatch>();
@@ -116,25 +115,20 @@ const CountryList: React.FC<{ currentPage?: number }> = ({ currentPage }) => {
     );
   }
 
-  const loadingCountryListJSX = LOADING_COUNTRY_SKELETONS.map(
-    (skeleton, index) => <CountryListElement key={index} />
-  );
-
-  let countryListJSX = filteredCountries.map((country: Country) => (
-    <CountryListElement key={country.cca3} country={country} />
-  ));
-
-  if (currentPage) {
-    countryListJSX = countryListJSX.slice(
-      currentPage * COUNTRIES_NR_ON_A_PAGE,
-      (currentPage + 1) * COUNTRIES_NR_ON_A_PAGE
-    );
-  }
-
   return (
     alert ?? (
       <ul className={classes['country-list']}>
-        {isLoading ? loadingCountryListJSX : countryListJSX}
+        {isLoading ? (
+          <>
+            {LOADING_COUNTRY_SKELETONS.map((skeleton, index) => (
+              <CountryListElement key={index} />
+            ))}
+          </>
+        ) : (
+          filteredCountries.map((country: Country) => (
+            <CountryListElement key={country.cca3} country={country} />
+          ))
+        )}
       </ul>
     )
   );
