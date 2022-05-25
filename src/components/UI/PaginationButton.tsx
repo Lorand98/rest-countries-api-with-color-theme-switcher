@@ -8,7 +8,8 @@ const PaginationButton: React.FC<{
   next?: boolean;
   className?: string;
   visible: boolean;
-}> = ({ pageNr, next = true, className: classNameProps, visible }) => {
+  onClick: (pageNr: number) => void;
+}> = ({ pageNr, next = true, className: classNameProps, visible, onClick }) => {
   const themeCtx = useContext(ThemeContext);
 
   let paginationBtnClasses = classes['pagination-btn'];
@@ -25,7 +26,10 @@ const PaginationButton: React.FC<{
   }
 
   return (
-    <button className={paginationBtnClasses}>
+    <button
+      className={paginationBtnClasses}
+      onClick={onClick.bind(null, pageNr)}
+    >
       {next ? (
         <>
           Page {pageNr}

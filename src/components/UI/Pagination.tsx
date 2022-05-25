@@ -18,10 +18,12 @@ const Pagination: React.FC<{
         pageNr={selectedPage - 1}
         next={false}
         visible={selectedPage > 1}
+        onClick={onSelectPage}
       />{' '}
       <PaginationButton
         pageNr={selectedPage + 1}
         visible={selectedPage < totalPages}
+        onClick={onSelectPage}
       />
     </div>
   );
