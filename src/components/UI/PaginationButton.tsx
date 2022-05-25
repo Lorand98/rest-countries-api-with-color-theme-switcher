@@ -3,20 +3,26 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../context/theme-context';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
-const PaginationButton: React.FC<{ pageNr: number; next?: boolean }> = ({
-  pageNr,
-  next = true,
-}) => {
+const PaginationButton: React.FC<{
+  pageNr: number;
+  next?: boolean;
+  className?: string;
+  visible: boolean;
+}> = ({ pageNr, next = true, className: classNameProps, visible }) => {
   const themeCtx = useContext(ThemeContext);
 
-  const paginationBtnThemeClass = themeCtx.isLight
-    ? classes['pagination-btn--light']
-    : classes['pagination-btn--dark'];
+  let paginationBtnClasses = classes['pagination-btn'];
+  if (!visible) {
+    paginationBtnClasses += ` ${classes['pagination-btn--invisible']}`;
+  } else {
+    const paginationBtnThemeClass = themeCtx.isLight
+      ? classes['pagination-btn--light']
+      : classes['pagination-btn--dark'];
 
-  const paginationBtnClasses = [
-    paginationBtnThemeClass,
-    classes['pagination-btn'],
-  ].join(' ');
+    paginationBtnClasses += ` ${paginationBtnThemeClass} ${
+      classNameProps || ''
+    }`;
+  }
 
   return (
     <button className={paginationBtnClasses}>
