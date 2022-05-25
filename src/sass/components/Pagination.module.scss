@@ -1,7 +1,12 @@
-//TODO: responsive design
+@use '../../sass/abstracts/mixins.module';
+
 .pagination {
-  max-width: 50%;
+  max-width: 75%;
   margin: 6rem auto;
   display: flex;
   justify-content: space-between;
+
+  @include mixins.respond(tab-land) {
+    max-width: 50%;
+  }
 }

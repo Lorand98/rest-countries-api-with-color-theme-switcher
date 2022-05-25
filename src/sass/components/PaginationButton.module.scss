@@ -5,9 +5,9 @@
 .pagination-btn {
   cursor: pointer;
 
-  padding: 0.6rem 2rem;
+  padding: 0.3rem 1rem;
   color: inherit;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   border: none;
   border-radius: 0.4rem;
   display: flex;
@@ -19,12 +19,17 @@
 
   @include mixins.element-background-theme-classes;
 
+  @include mixins.respond(tab) {
+    font-size: 1.8rem;
+    padding: 0.6rem 2rem;
+  }
+
   &--invisible {
     visibility: hidden;
   }
 
   &__icon {
-    width: 2rem;
-    height: 2rem;
+    width: 1.4rem;
+    height: 1.4rem;
   }
 }

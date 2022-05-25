@@ -2,12 +2,16 @@ import { useState } from 'react';
 import CountryList from '../components/CountryList/CountryList';
 import Filter from '../components/UI/Filter';
 import Pagination from '../components/UI/Pagination';
+import { scrollToTop } from '../helpers';
 
 const CountryListPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const selectPageHandler = (pageNr: number) => {
-    if (pageNr > 0) setCurrentPage(pageNr);
+    if (pageNr > 0) {
+      setCurrentPage(pageNr);
+      scrollToTop();
+    }
   };
 
   return (
