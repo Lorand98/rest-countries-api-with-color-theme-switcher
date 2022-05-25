@@ -1,0 +1,26 @@
+@use '../abstracts/mixins.module';
+@use '../abstracts/variables.module';
+@use '../../sass/base/colors.module';
+
+.pagination-btn {
+  cursor: pointer;
+  margin-top: 4rem;
+  padding: 0.6rem 2rem;
+  color: inherit;
+  font-size: 1.8rem;
+  border: none;
+  border-radius: 0.4rem;
+  display: flex;
+  gap: 1rem;
+
+  align-items: center;
+  box-shadow: -0.1rem -0.1rem 0.5rem 0.1rem variables.$shadow-light-black,
+    0.1rem 0.1rem 0.5rem 0.1rem variables.$shadow-light-black;
+
+  @include mixins.element-background-theme-classes;
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}

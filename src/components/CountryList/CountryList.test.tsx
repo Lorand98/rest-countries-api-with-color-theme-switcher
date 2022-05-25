@@ -23,7 +23,7 @@ describe('CountryList component', () => {
       })
     ) as jest.Mock;
 
-    render(<CountryList />);
+    render(<CountryList currentPage={1} />);
 
     const listItemElements = await screen.findAllByRole('listitem', {}, {});
     expect(listItemElements).not.toHaveLength(0);

@@ -5,6 +5,7 @@ import { COUNTRIES_NR_ON_A_PAGE } from '../../constants';
 import { ThemeContext } from '../../context/theme-context';
 import { useContext } from 'react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import PaginationButton from './PaginationButton';
 
 const Pagination: React.FC<{
   selectedPage: number;
@@ -24,40 +25,19 @@ const Pagination: React.FC<{
     classes['pagination__btn'],
   ].join(' ');
 
-  const prevBtnJSX = (
-    <button className={paginationBtnClasses}>
-      {' '}
-      <AiOutlineArrowLeft className={classes['pagination__btn__icon']} />{' '}
-      Previous page
-    </button>
-  );
-  const nextBtnJSX = (
-    <button className={paginationBtnClasses}>
-      {' '}
-      <AiOutlineArrowRight className={classes['pagination__btn__icon']} /> Next
-      page
-    </button>
-  );
-
   let pageNavigationJSX =
-    selectedPage === 0 ? (
-      prevBtnJSX
-    ) : selectedPage === totalPages - 1 ? (
-      nextBtnJSX
+    selectedPage === 1 ? (
+      <PaginationButton pageNr={selectedPage + 1} />
+    ) : selectedPage === totalPages ? (
+      <PaginationButton pageNr={selectedPage - 1} next={false} />
     ) : (
       <>
-        {prevBtnJSX}
-        {nextBtnJSX}
+        <PaginationButton pageNr={selectedPage - 1} next={false} />
+        <PaginationButton pageNr={selectedPage + 1} />
       </>
     );
 
-  return (
-    <div className={classes['pagination']}>
-      {' '}
-      {prevBtnJSX}
-      {nextBtnJSX}
-    </div>
-  );
+  return <div className={classes['pagination']}> {pageNavigationJSX}</div>;
 };
 
 export default Pagination;

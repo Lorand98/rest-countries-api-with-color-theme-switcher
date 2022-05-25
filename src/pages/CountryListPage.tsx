@@ -4,10 +4,10 @@ import Filter from '../components/UI/Filter';
 import Pagination from '../components/UI/Pagination';
 
 const CountryListPage: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const selectPageHandler = (pageNr: number) => {
-    setCurrentPage(pageNr);
+    if (pageNr > 0) setCurrentPage(pageNr);
   };
 
   return (

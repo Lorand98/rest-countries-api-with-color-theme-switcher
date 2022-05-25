@@ -25,7 +25,7 @@ const validateCountries = (countries: Country[]) => {
   return validCountries;
 };
 
-const CountryList: React.FC<{ currentPage?: number }> = ({ currentPage }) => {
+const CountryList: React.FC<{ currentPage: number }> = ({ currentPage }) => {
   const { countries } = useSelector((state: RootState) => state.countries);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
   const dispatch = useDispatch<AppDispatch>();
@@ -124,12 +124,10 @@ const CountryList: React.FC<{ currentPage?: number }> = ({ currentPage }) => {
     <CountryListElement key={country.cca3} country={country} />
   ));
 
-  if (currentPage) {
-    countryListJSX = countryListJSX.slice(
-      currentPage * COUNTRIES_NR_ON_A_PAGE,
-      (currentPage + 1) * COUNTRIES_NR_ON_A_PAGE
-    );
-  }
+  countryListJSX = countryListJSX.slice(
+    (currentPage - 1) * COUNTRIES_NR_ON_A_PAGE,
+    currentPage * COUNTRIES_NR_ON_A_PAGE
+  );
 
   return (
     alert ?? (
