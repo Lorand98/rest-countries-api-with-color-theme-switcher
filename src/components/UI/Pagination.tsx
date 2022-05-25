@@ -11,19 +11,9 @@ const Pagination: React.FC<{
   selectedPage: number;
   onSelectPage: (pageNr: number) => void;
 }> = ({ selectedPage, onSelectPage }) => {
-  //TODO: show page number instead of prev. and next
   const { countries } = useSelector((state: RootState) => state.countries);
   const totalPages = Math.ceil(countries.length / COUNTRIES_NR_ON_A_PAGE);
   const themeCtx = useContext(ThemeContext);
-
-  const paginationBtnThemeClass = themeCtx.isLight
-    ? classes['pagination__btn--light']
-    : classes['pagination__btn--dark'];
-
-  const paginationBtnClasses = [
-    paginationBtnThemeClass,
-    classes['pagination__btn'],
-  ].join(' ');
 
   let pageNavigationJSX =
     selectedPage === 1 ? (
