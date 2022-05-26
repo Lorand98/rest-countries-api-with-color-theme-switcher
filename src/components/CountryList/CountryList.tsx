@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   COUNTRIES_API_ALL,
   COUNTRIES_API_ALL_PARAMS,
   COUNTRIES_NR_ON_A_PAGE,
   LOADING_COUNTRY_SKELETONS,
   NO_COUNTRIES_ALERT_MSG,
-} from '../../constants';
-import { useHttpRequest } from '../../hooks/https_requests';
-import { Country, CountryRegions } from '../../types';
-import CountryListElement from './CountryListElement';
+} from "../../constants";
+import { useHttpRequest } from "../../hooks/https_requests";
+import { Country } from "../../types";
+import CountryListElement from "./CountryListElement";
 
-import classes from '../../sass/components/CountryList.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
-import { countryListActions } from '../../store/countryListSlice';
-import Alert from '../UI/Alert';
-import { AlertSeverity } from '../../types';
-import { validateCountry } from '../../helpers';
+import classes from "../../sass/components/CountryList.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { countryListActions } from "../../store/countryListSlice";
+import Alert from "../UI/Alert";
+import { AlertSeverity } from "../../types";
+import { validateCountry } from "../../helpers";
 
 const validateCountries = (countries: Country[]) => {
   const validCountries: Country[] = countries.map((country: Country) =>
@@ -25,22 +25,18 @@ const validateCountries = (countries: Country[]) => {
   return validCountries;
 };
 
+let initialRun = true;
+
 const CountryList: React.FC<{ currentPage: number }> = ({ currentPage }) => {
-  const { countries } = useSelector((state: RootState) => state.countries);
-  const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
+  const { allCountries: countries, filteredCountries } = useSelector(
+    (state: RootState) => state.countries
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   const { filteredRegion, searchedCountry } = useSelector(
     (state: RootState) => state.countryFilter
   );
   //TODO: create tests for checking if the filter/search function works - with dummy data
-
-  //TODO: outsource filter/search logic to an external function, and call only that function from the useEffect
-
-  //TODO: optimize searching performance - e.g.: paging
-
-  //TODO: Loading animation
-
   const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
 
   useEffect(() => {
@@ -55,53 +51,18 @@ const CountryList: React.FC<{ currentPage: number }> = ({ currentPage }) => {
         `${COUNTRIES_API_ALL}${COUNTRIES_API_ALL_PARAMS}`,
         loadCountries
       );
-    } else {
-      setFilteredCountries(countries);
     }
   }, [sendRequest, dispatch, countries]);
 
   useEffect(() => {
-    const searchedCountryLowerCase = searchedCountry.toLowerCase();
-
-    if (filteredRegion !== CountryRegions.ALL) {
-      if (searchedCountryLowerCase.trim() !== '') {
-        setFilteredCountries(
-          countries.filter(
-            (country) =>
-              country.region.includes(filteredRegion) &&
-              country.name.common
-                .toLowerCase()
-                .includes(searchedCountryLowerCase)
-            // ||
-            // country.name.official
-            //   .toLowerCase()
-            //   .includes(searchedCountryLowerCase)
-          )
-        );
-      } else {
-        setFilteredCountries(
-          countries.filter((country) => country.region.includes(filteredRegion))
-        );
-      }
+    if (!initialRun) {
+      dispatch(
+        countryListActions.filterCountries({ filteredRegion, searchedCountry })
+      );
+    } else {
+      initialRun = false;
     }
-
-    if (filteredRegion === CountryRegions.ALL) {
-      if (searchedCountry.trim() !== '') {
-        setFilteredCountries(
-          countries.filter(
-            (country) =>
-              country.name.common
-                .toLowerCase()
-                .includes(searchedCountryLowerCase)
-            // ||
-            // country.name.official.toLowerCase().includes(searchedCountryLowerCase)
-          )
-        );
-      } else {
-        setFilteredCountries(countries);
-      }
-    }
-  }, [filteredRegion, searchedCountry, countries]);
+  }, [filteredRegion, searchedCountry]);
 
   let alert = null;
   if (error) {
@@ -131,7 +92,7 @@ const CountryList: React.FC<{ currentPage: number }> = ({ currentPage }) => {
 
   return (
     alert ?? (
-      <ul className={classes['country-list']}>
+      <ul className={classes["country-list"]}>
         {isLoading ? loadingCountryListJSX : countryListJSX}
       </ul>
     )

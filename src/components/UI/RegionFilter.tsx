@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { countryFilterActions } from "../../store/countryFilterSlice";
 
-const RegionFilter: React.FC = () => {
+const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
   const [showList, setShowList] = useState(false);
 
   const { filteredRegion } = useSelector(
@@ -21,6 +21,7 @@ const RegionFilter: React.FC = () => {
   const filterRegionHandler = (region: CountryRegions) => {
     dispatch(countryFilterActions.enableFilter(region));
     showListHandler();
+    resetPages();
   };
 
   const themeCtx = useContext(ThemeContext);

@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../../store";
 import { countryFilterActions } from "../../store/countryFilterSlice";
 import classes from "../../sass/components/SearchBar.module.scss";
 
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
   const themeCtx = useContext(ThemeContext);
   const dispatch = useDispatch<AppDispatch>();
   const { searchedCountry } = useSelector(
@@ -23,6 +23,7 @@ const SearchBar: React.FC = () => {
 
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(countryFilterActions.setSearchedCountry(e.target.value));
+    resetPages();
   };
 
   return (

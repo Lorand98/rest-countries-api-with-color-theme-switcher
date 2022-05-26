@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import CountryList from '../components/CountryList/CountryList';
-import Filter from '../components/UI/Filter';
-import Pagination from '../components/UI/Pagination';
-import { scrollToTop } from '../helpers';
+import { useState } from "react";
+import CountryList from "../components/CountryList/CountryList";
+import Filter from "../components/UI/Filter";
+import Pagination from "../components/UI/Pagination";
+import { scrollToTop } from "../helpers";
 
 const CountryListPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,8 +16,8 @@ const CountryListPage: React.FC = () => {
 
   return (
     <>
-      <div style={{ padding: '0 5%' }}>
-        <Filter />
+      <div style={{ padding: "0 5%" }}>
+        <Filter onSelectPage={selectPageHandler} />
         <CountryList currentPage={currentPage} />
         <Pagination
           selectedPage={currentPage}
