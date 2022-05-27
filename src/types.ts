@@ -10,7 +10,7 @@ export interface Country {
     };
   };
   cca3: string;
-  capital: string;
+  capital: string | string[];
   region: string;
   population: number | string;
   flags: {
@@ -19,13 +19,15 @@ export interface Country {
   };
   independent?: boolean;
   subregion: string;
-  tld: string;
-  currencies: {
-    [key: string]: {
-      name: string;
-      symbol: string;
-    };
-  };
+  tld: string | string[];
+  currencies:
+    | {
+        [key: string]: {
+          name: string;
+          symbol: string;
+        };
+      }
+    | {};
   languages: {
     [key: string]: string;
   };

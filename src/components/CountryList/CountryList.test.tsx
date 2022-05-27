@@ -1,31 +1,34 @@
-import { render, screen } from "@testing-library/react";
-import CountryList from "./CountryList";
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { TEST_COUNTRIES } from '../../constants';
+import store from '../../store';
+import CountryList from './CountryList';
 
-describe("CountryList component", () => {
-  test("renders countries if request succeeds", async () => {
+describe('CountryList component', () => {
+  test('renders countries if request succeeds', async () => {
     window.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,
-        json: async () => [
-          {
-            name: "Romania",
-            alpha2Code: "RO",
-            capital: "Bucharest",
-            region: "Europe",
-            population: 19286123,
-            flags: {
-              svg: "https://flagcdn.com/ro.svg",
-              png: "https://flagcdn.com/w320/ro.png",
-            },
-            independent: false,
-          },
-        ],
+        json: async () => TEST_COUNTRIES,
       })
     ) as jest.Mock;
+    window.scrollTo = jest.fn();
 
-    render(<CountryList currentPage={1} totalPages={1} />);
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path='/'
+              element={<CountryList currentPage={1} totalPages={1} />}
+            />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    );
 
-    const listItemElements = await screen.findAllByRole("listitem", {}, {});
+    const listItemElements = await screen.findAllByRole('listitem', {}, {});
     expect(listItemElements).not.toHaveLength(0);
   });
 });
