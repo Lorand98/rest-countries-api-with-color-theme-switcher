@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   COUNTRIES_API_ALL,
   COUNTRIES_API_ALL_PARAMS,
@@ -67,7 +67,7 @@ const CountryList: React.FC<{ currentPage: number; totalPages: number }> = ({
     } else {
       initialRun = false;
     }
-  }, [filteredRegion, searchedCountry]);
+  }, [filteredRegion, searchedCountry, dispatch]);
 
   let alert = null;
   if (error) {
