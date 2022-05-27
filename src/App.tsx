@@ -16,7 +16,6 @@ function App() {
     themeCtx.isLight ? classes["text--light"] : classes["text--dark"]
   }`;
 
-  //TODO: 404 page
   return (
     <div className={[backgroundThemeClass, textThemeClass].join(" ")}>
       <Header />
