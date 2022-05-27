@@ -58,8 +58,12 @@ const Countrydescription__details: React.FC = (props) => {
   }, [sendRequestBorders, country, borders]);
 
   const backBtnThemeClass = themeCtx.isLight
-    ? [classes["country__back-btn--light"], classes["a--light"]].join(" ")
-    : [classes["country__back-btn--dark"], classes["a--dark"]].join(" ");
+    ? [classes["country-wrapper__back-btn--light"], classes["a--light"]].join(
+        " "
+      )
+    : [classes["country-wrapper__back-btn--dark"], classes["a--dark"]].join(
+        " "
+      );
 
   const borderCountryLinkThemeClass = themeCtx.isLight
     ? [
