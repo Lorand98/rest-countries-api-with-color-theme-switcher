@@ -17,7 +17,7 @@ import { AppDispatch, RootState } from "../../store";
 import { countryListActions } from "../../store/countryListSlice";
 import Alert from "../UI/Alert";
 import { AlertSeverity } from "../../types";
-import { validateCountry } from "../../helpers";
+import { scrollToTop, validateCountry } from "../../helpers";
 
 const validateCountries = (countries: Country[]) => {
   const validCountries: Country[] = countries.map((country: Country) =>
@@ -90,12 +90,14 @@ const CountryList: React.FC<{ currentPage: number; totalPages: number }> = ({
     <CountryListElement key={country.cca3} country={country} />
   ));
 
-  if (!(currentPage > totalPages)) {
+  if (currentPage <= totalPages) {
     countryListJSX = countryListJSX.slice(
       (currentPage - 1) * COUNTRIES_NR_ON_A_PAGE,
       currentPage * COUNTRIES_NR_ON_A_PAGE
     );
+    scrollToTop();
   } else {
+    console.log(currentPage, totalPages);
     alert = <Alert severity={AlertSeverity.LOW}>{NO_PAGE_ALERT_MSG}</Alert>;
   }
 

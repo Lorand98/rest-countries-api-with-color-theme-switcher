@@ -14,7 +14,7 @@ const CountryListPage: React.FC = () => {
   const { filteredCountries: countries } = useSelector(
     (state: RootState) => state.countries
   );
-  const totalPages = Math.ceil(countries.length / COUNTRIES_NR_ON_A_PAGE);
+  const totalPages = Math.ceil(countries.length / COUNTRIES_NR_ON_A_PAGE) || 1;
 
   return (
     <>
