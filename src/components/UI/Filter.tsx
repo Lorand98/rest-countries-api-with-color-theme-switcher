@@ -1,12 +1,12 @@
 import RegionFilter from "./RegionFilter";
 import SearchBar from "./SearchBar";
 import classes from "../../sass/components/Filter.module.scss";
+import { useNavigate } from "react-router-dom";
 
-const Filter: React.FC<{ onSelectPage: (pageNr: number) => void }> = ({
-  onSelectPage,
-}) => {
+const Filter: React.FC = () => {
+  const navigate = useNavigate();
   const resetPagesHandler = () => {
-    onSelectPage(1);
+    navigate("/");
   };
   return (
     <div className={classes["filter"]}>

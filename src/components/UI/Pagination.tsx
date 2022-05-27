@@ -2,12 +2,11 @@ import classes from "../../sass/components/Pagination.module.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { COUNTRIES_NR_ON_A_PAGE } from "../../constants";
-import PaginationButton from "./PaginationButton";
+import PaginationButtonLink from "./PaginationButtonLink";
 
 const Pagination: React.FC<{
   selectedPage: number;
-  onSelectPage: (pageNr: number) => void;
-}> = ({ selectedPage, onSelectPage }) => {
+}> = ({ selectedPage }) => {
   const { filteredCountries: countries } = useSelector(
     (state: RootState) => state.countries
   );
@@ -16,16 +15,14 @@ const Pagination: React.FC<{
   return (
     <div className={classes["pagination"]}>
       {" "}
-      <PaginationButton
+      <PaginationButtonLink
         pageNr={selectedPage - 1}
         next={false}
         visible={selectedPage > 1}
-        onClick={onSelectPage}
       />{" "}
-      <PaginationButton
+      <PaginationButtonLink
         pageNr={selectedPage + 1}
         visible={selectedPage < totalPages}
-        onClick={onSelectPage}
       />
     </div>
   );

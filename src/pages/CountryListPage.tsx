@@ -1,28 +1,19 @@
-import { useState } from "react";
+import { useParams } from "react-router-dom";
 import CountryList from "../components/CountryList/CountryList";
 import Filter from "../components/UI/Filter";
 import Pagination from "../components/UI/Pagination";
-import { scrollToTop } from "../helpers";
 
 const CountryListPage: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const selectPageHandler = (pageNr: number) => {
-    if (pageNr > 0) {
-      setCurrentPage(pageNr);
-      scrollToTop();
-    }
-  };
+  const { page } = useParams();
+  let pageNr = page !== undefined ? Number.parseInt(page) : 1;
+  isNaN(pageNr) && (pageNr = 1);
 
   return (
     <>
       <div style={{ padding: "0 5%" }}>
-        <Filter onSelectPage={selectPageHandler} />
-        <CountryList currentPage={currentPage} />
-        <Pagination
-          selectedPage={currentPage}
-          onSelectPage={selectPageHandler}
-        />
+        <Filter />
+        <CountryList currentPage={pageNr} />
+        <Pagination selectedPage={pageNr} />
       </div>
     </>
   );
