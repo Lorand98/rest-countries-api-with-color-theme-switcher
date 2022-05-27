@@ -5,6 +5,7 @@ import {
   COUNTRIES_NR_ON_A_PAGE,
   LOADING_COUNTRY_SKELETONS,
   NO_COUNTRIES_ALERT_MSG,
+  NO_PAGE_ALERT_MSG,
 } from "../../constants";
 import { useHttpRequest } from "../../hooks/https_requests";
 import { Country } from "../../types";
@@ -27,7 +28,10 @@ const validateCountries = (countries: Country[]) => {
 
 let initialRun = true;
 
-const CountryList: React.FC<{ currentPage: number }> = ({ currentPage }) => {
+const CountryList: React.FC<{ currentPage: number; totalPages: number }> = ({
+  currentPage,
+  totalPages,
+}) => {
   const { allCountries: countries, filteredCountries } = useSelector(
     (state: RootState) => state.countries
   );
@@ -86,10 +90,14 @@ const CountryList: React.FC<{ currentPage: number }> = ({ currentPage }) => {
     <CountryListElement key={country.cca3} country={country} />
   ));
 
-  countryListJSX = countryListJSX.slice(
-    (currentPage - 1) * COUNTRIES_NR_ON_A_PAGE,
-    currentPage * COUNTRIES_NR_ON_A_PAGE
-  );
+  if (!(currentPage > totalPages)) {
+    countryListJSX = countryListJSX.slice(
+      (currentPage - 1) * COUNTRIES_NR_ON_A_PAGE,
+      currentPage * COUNTRIES_NR_ON_A_PAGE
+    );
+  } else {
+    alert = <Alert severity={AlertSeverity.LOW}>{NO_PAGE_ALERT_MSG}</Alert>;
+  }
 
   return (
     alert ?? (
