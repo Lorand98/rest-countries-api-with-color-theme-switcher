@@ -22,7 +22,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<CountryListPage />} />
-        <Route path="/:cca3" element={<CountryDetailsPage />} />
+        <Route path="/country/:cca3" element={<CountryDetailsPage />} />
       </Routes>
     </div>
   );

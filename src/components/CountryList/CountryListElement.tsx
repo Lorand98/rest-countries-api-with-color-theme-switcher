@@ -51,7 +51,7 @@ const CountryListElement: React.FC<{ country?: Country }> = ({ country }) => {
 
   return (
     <Card className={classes["country"]}>
-      <Link to={country.cca3} className={linkThemeClass}>
+      <Link to={`/country/${country.cca3}`} className={linkThemeClass}>
         <div className={classes["country__flag-wrapper"]}>
           <img
             alt={`${country.name.common} flag`}

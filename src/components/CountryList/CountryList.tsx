@@ -37,6 +37,7 @@ const CountryList: React.FC<{ currentPage: number }> = ({ currentPage }) => {
     (state: RootState) => state.countryFilter
   );
   //TODO: create tests for checking if the filter/search function works - with dummy data
+
   const { sendRequest, isLoading, error } = useHttpRequest<Country[]>();
 
   useEffect(() => {
