@@ -60,9 +60,13 @@ const CountryList: React.FC<{ currentPage: number; totalPages: number }> = ({
   }, [sendRequest, dispatch, countries]);
 
   useEffect(() => {
-    dispatch(
-      countryListActions.filterCountries({ filteredRegion, searchedCountry })
-    );
+    if (!initialRun) {
+      dispatch(
+        countryListActions.filterCountries({ filteredRegion, searchedCountry })
+      );
+    } else {
+      initialRun = false;
+    }
   }, [filteredRegion, searchedCountry, dispatch]);
 
   let alert = null;

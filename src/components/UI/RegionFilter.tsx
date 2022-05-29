@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { ThemeContext } from '../../context/theme-context';
 import classes from '../../sass/components/RegionFilter.module.scss';
 import { MdKeyboardArrowDown } from 'react-icons/md';
@@ -8,17 +8,21 @@ import { AppDispatch, RootState } from '../../store';
 import { countryFilterActions } from '../../store/countryFilterSlice';
 import { REGION_FILTER_PLACEHOLDER } from '../../constants';
 import { TiDeleteOutline } from 'react-icons/ti';
+import { useOutsideClickHandler } from '../../hooks/outside_click_handler';
 
 const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
   const [showList, setShowList] = useState(false);
+  const filterListWrapperRef = useRef<HTMLDivElement>(null);
+
+  const showListHandler = () => setShowList((prevShowList) => !prevShowList);
+
+  useOutsideClickHandler<HTMLDivElement>(filterListWrapperRef, showListHandler);
 
   const { filteredRegion } = useSelector(
     (state: RootState) => state.countryFilter
   );
 
   const dispatch = useDispatch<AppDispatch>();
-
-  const showListHandler = () => setShowList((prevShowList) => !prevShowList);
 
   const filterRegionHandler = (region: CountryRegions) => {
     dispatch(countryFilterActions.enableFilter(region));
@@ -67,7 +71,10 @@ const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
         )}
       </div>
       {showList && (
-        <div className={classes['filter__list-wrapper']}>
+        <div
+          className={classes['filter__list-wrapper']}
+          ref={filterListWrapperRef}
+        >
           <ul
             className={[
               classes['filter__list'],
