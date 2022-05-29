@@ -28,6 +28,7 @@ const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
 
   const removeFilterRegionHandler = () => {
     dispatch(countryFilterActions.disableFilter());
+    showListHandler();
   };
 
   const themeCtx = useContext(ThemeContext);
