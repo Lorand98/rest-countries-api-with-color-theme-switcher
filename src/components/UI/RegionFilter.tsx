@@ -6,6 +6,8 @@ import { CountryRegions } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { countryFilterActions } from '../../store/countryFilterSlice';
+import { REGION_FILTER_PLACEHOLDER } from '../../constants';
+import { TiDeleteOutline } from 'react-icons/ti';
 
 const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
   const [showList, setShowList] = useState(false);
@@ -22,6 +24,10 @@ const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
     dispatch(countryFilterActions.enableFilter(region));
     showListHandler();
     resetPages();
+  };
+
+  const removeFilterRegionHandler = () => {
+    dispatch(countryFilterActions.disableFilter());
   };
 
   const themeCtx = useContext(ThemeContext);
@@ -48,11 +54,16 @@ const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
         onClick={showListHandler}
       >
         <span className={classes['filter__header__text']}>
-          {filteredRegion}
+          {filteredRegion || REGION_FILTER_PLACEHOLDER}
         </span>
-        <MdKeyboardArrowDown
-          className={classes['filter__header__arrow-down']}
-        />
+        {filteredRegion ? (
+          <TiDeleteOutline
+            className={classes['filter__header__icon']}
+            onClick={removeFilterRegionHandler}
+          />
+        ) : (
+          <MdKeyboardArrowDown className={classes['filter__header__icon']} />
+        )}
       </div>
       {showList && (
         <div className={classes['filter__list-wrapper']}>

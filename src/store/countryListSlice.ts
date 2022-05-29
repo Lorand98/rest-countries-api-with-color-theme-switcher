@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Country, CountryRegions } from "../types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Country, CountryRegions } from '../types';
 
 const countryListSlice = createSlice({
-  name: "countries",
+  name: 'countries',
   initialState: {
     allCountries: [] as Country[],
     filteredCountries: [] as Country[],
@@ -16,14 +16,14 @@ const countryListSlice = createSlice({
     filterCountries(
       state,
       action: PayloadAction<{
-        filteredRegion: CountryRegions;
+        filteredRegion: CountryRegions | null;
         searchedCountry: string;
       }>
     ) {
       const { filteredRegion, searchedCountry } = action.payload;
       const searchedCountryLowerCase = searchedCountry.toLowerCase();
-      if (filteredRegion !== CountryRegions.ALL) {
-        if (searchedCountryLowerCase.trim() !== "") {
+      if (filteredRegion) {
+        if (searchedCountryLowerCase.trim() !== '') {
           state.filteredCountries = state.allCountries.filter(
             (country) =>
               country.region.includes(filteredRegion) &&
@@ -42,8 +42,8 @@ const countryListSlice = createSlice({
         }
       }
 
-      if (filteredRegion === CountryRegions.ALL) {
-        if (searchedCountry.trim() !== "") {
+      if (!filteredRegion) {
+        if (searchedCountry.trim() !== '') {
           state.filteredCountries = state.allCountries.filter(
             (country) =>
               country.name.common

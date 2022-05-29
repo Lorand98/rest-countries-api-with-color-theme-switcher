@@ -38,7 +38,6 @@ export type CountryBorder = {
 };
 
 export enum CountryRegions {
-  ALL = 'Filter by Region',
   AFRICA = 'Africa',
   AMERICA = 'America',
   ASIA = 'Asia',

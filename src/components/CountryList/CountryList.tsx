@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import {
   COUNTRIES_API_ALL,
   COUNTRIES_API_ALL_PARAMS,
@@ -6,18 +6,18 @@ import {
   LOADING_COUNTRY_SKELETONS,
   NO_COUNTRIES_ALERT_MSG,
   NO_PAGE_ALERT_MSG,
-} from "../../constants";
-import { useHttpRequest } from "../../hooks/https_requests";
-import { Country } from "../../types";
-import CountryListElement from "./CountryListElement";
+} from '../../constants';
+import { useHttpRequest } from '../../hooks/https_requests';
+import { Country } from '../../types';
+import CountryListElement from './CountryListElement';
 
-import classes from "../../sass/components/CountryList.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store";
-import { countryListActions } from "../../store/countryListSlice";
-import Alert from "../UI/Alert";
-import { AlertSeverity } from "../../types";
-import { scrollToTop, validateCountry } from "../../helpers";
+import classes from '../../sass/components/CountryList.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { countryListActions } from '../../store/countryListSlice';
+import Alert from '../UI/Alert';
+import { AlertSeverity } from '../../types';
+import { scrollToTop, validateCountry } from '../../helpers';
 
 const validateCountries = (countries: Country[]) => {
   const validCountries: Country[] = countries.map((country: Country) =>
@@ -60,13 +60,9 @@ const CountryList: React.FC<{ currentPage: number; totalPages: number }> = ({
   }, [sendRequest, dispatch, countries]);
 
   useEffect(() => {
-    if (!initialRun) {
-      dispatch(
-        countryListActions.filterCountries({ filteredRegion, searchedCountry })
-      );
-    } else {
-      initialRun = false;
-    }
+    dispatch(
+      countryListActions.filterCountries({ filteredRegion, searchedCountry })
+    );
   }, [filteredRegion, searchedCountry, dispatch]);
 
   let alert = null;
@@ -97,13 +93,12 @@ const CountryList: React.FC<{ currentPage: number; totalPages: number }> = ({
     );
     scrollToTop();
   } else {
-    console.log(currentPage, totalPages);
     alert = <Alert severity={AlertSeverity.LOW}>{NO_PAGE_ALERT_MSG}</Alert>;
   }
 
   return (
     alert ?? (
-      <ul className={classes["country-list"]}>
+      <ul className={classes['country-list']}>
         {isLoading ? loadingCountryListJSX : countryListJSX}
       </ul>
     )
