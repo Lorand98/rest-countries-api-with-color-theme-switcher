@@ -1,7 +1,7 @@
-@use "../abstracts/variables.module";
-@use "../abstracts/mixins.module";
-@use "../base/colors.module";
-@use "../base/animations.module";
+@use '../abstracts/variables.module';
+@use '../abstracts/mixins.module';
+@use '../base/colors.module';
+@use '../base/animations.module';
 
 .country {
   box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
@@ -16,16 +16,22 @@
 
   animation: fade-in 400ms;
 
-  & > a {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  &:hover {
+    transform: scale(1.05);
   }
 
   &--skeleton {
     gap: 1rem;
     min-height: 36rem;
+    &:hover {
+      transform: none;
+    }
+  }
+  & > a {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__flag {

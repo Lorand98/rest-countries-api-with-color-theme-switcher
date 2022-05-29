@@ -1,5 +1,5 @@
-@use "./variables.module";
-@use "../base/colors.module";
+@use './variables.module';
+@use '../base/colors.module';
 
 @mixin respond($breakpoint) {
   //MOBILE FIRST DESIGN
@@ -44,7 +44,7 @@
 // }
 
 @mixin element-background-theme-classes() {
-  transition: background-color colors.$transition-time;
+  transition: all colors.$transition-time;
   &--light {
     background-color: variables.$color-white-dark-mode-text-light-els;
   }
