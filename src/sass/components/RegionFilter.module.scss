@@ -1,6 +1,6 @@
-@use "../abstracts/variables.module";
-@use "../abstracts/mixins.module";
-@use "../../sass/base/animations.module";
+@use '../abstracts/variables.module';
+@use '../abstracts/mixins.module';
+@use '../../sass/base/animations.module';
 
 $filter-header-and-list-padding: 1.5rem;
 $filter-header-and-list-box-shadow: 0.1rem 0.1rem 1rem
@@ -57,16 +57,26 @@ $indexes: 0, 1, 2, 3, 4;
     z-index: 2;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
 
     @include mixins.element-background-theme-classes;
 
     &__element {
       transition: transform 300ms;
       cursor: pointer;
+      flex: 1 0 100%;
+      padding-inline: 1rem;
+      transition: 200ms;
+      &--light {
+        &:hover {
+          background-color: variables.$color-very-light-gray-light-bg;
+        }
+      }
 
-      &:hover {
-        transform: scale(1.2);
+      &--dark {
+        &:hover {
+          background-color: variables.$color-very-dark-blue-dark-bg;
+        }
       }
 
       @each $index in $indexes {
