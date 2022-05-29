@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 0;
 
-  transition: opacity 0.3s;
+  transition: all 200ms !important;
 
   @include mixins.element-background-theme-classes;
 

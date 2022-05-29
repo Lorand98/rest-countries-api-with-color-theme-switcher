@@ -44,7 +44,7 @@
 // }
 
 @mixin element-background-theme-classes() {
-  transition: all colors.$transition-time;
+  transition: background-color colors.$transition-time;
   &--light {
     background-color: variables.$color-white-dark-mode-text-light-els;
   }
