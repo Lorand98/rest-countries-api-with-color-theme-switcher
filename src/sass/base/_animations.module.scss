@@ -1,5 +1,5 @@
-@use "../abstracts/mixins.module";
-@use "../abstracts/variables.module";
+@use '../abstracts/mixins.module';
+@use '../abstracts/variables.module';
 
 @keyframes skeleton-loading-light {
   0% {
@@ -24,7 +24,19 @@
 @keyframes fade-in-from-right {
   0% {
     opacity: 0;
-    transform: translateX(2rem);
+    transform: translateX(5rem);
+  }
+
+  100% {
+    opacity: 100;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-5rem);
   }
 
   100% {

@@ -1,7 +1,7 @@
-@use "../abstracts/mixins.module";
-@use "../abstracts/variables.module";
-@use "../../sass/base/colors.module";
-@use "../../sass/base/animations.module";
+@use '../abstracts/mixins.module';
+@use '../abstracts/variables.module';
+@use '../../sass/base/colors.module';
+@use '../../sass/base/animations.module';
 
 .country-wrapper {
   padding-inline: 8%;
@@ -49,8 +49,10 @@
   &__flag {
     max-width: 100%;
     box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
+    animation: fade-in-from-left 1000ms;
     &--skeleton {
       height: 30rem;
+      animation: none;
     }
   }
 
@@ -58,6 +60,12 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    animation: fade-in-from-right 1000ms;
+
+    &--skeleton {
+      animation: none;
+    }
 
     @include mixins.respond(tab-land) {
       gap: 5rem;
