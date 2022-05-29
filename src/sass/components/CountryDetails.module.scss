@@ -51,8 +51,7 @@
     box-shadow: 0.1rem 0rem 0.8rem variables.$shadow-light-black;
     animation: fade-in-from-left 1000ms;
     &--skeleton {
-      height: 30rem;
-      animation: none;
+      height: 35rem;
     }
   }
 
