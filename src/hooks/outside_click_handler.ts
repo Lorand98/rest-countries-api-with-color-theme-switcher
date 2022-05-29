@@ -1,14 +1,25 @@
 import { RefObject, useEffect } from 'react';
 
-export function useOutsideClickHandler<T extends HTMLElement>(
-  ref: RefObject<T>,
+export function useOutsideClickHandler<
+  T extends HTMLElement,
+  T1 extends HTMLElement
+>(
+  observedRef: RefObject<T>,
+  boundaryRef: RefObject<T1>,
   callbackFn: () => void
 ) {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        callbackFn();
+      if (!observedRef.current) {
+        return;
       }
+
+      if (!boundaryRef.current) {
+        !observedRef.current.contains(event.target as Node) && callbackFn();
+        return;
+      }
+
+      !boundaryRef.current.contains(event.target as Node) && callbackFn();
     }
     // Bind the event listener
     document.addEventListener('mousedown', handleClickOutside);
@@ -16,5 +27,5 @@ export function useOutsideClickHandler<T extends HTMLElement>(
       // Unbind the event listener on clean up
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ref, callbackFn]);
+  }, [observedRef, boundaryRef, callbackFn]);
 }

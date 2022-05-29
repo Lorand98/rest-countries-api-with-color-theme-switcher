@@ -13,10 +13,15 @@ import { useOutsideClickHandler } from '../../hooks/outside_click_handler';
 const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
   const [showList, setShowList] = useState(false);
   const filterListWrapperRef = useRef<HTMLDivElement>(null);
+  const filterListRef = useRef<HTMLDivElement>(null);
 
   const showListHandler = () => setShowList((prevShowList) => !prevShowList);
 
-  useOutsideClickHandler<HTMLDivElement>(filterListWrapperRef, showListHandler);
+  useOutsideClickHandler<HTMLDivElement, HTMLDivElement>(
+    filterListWrapperRef,
+    filterListRef,
+    showListHandler
+  );
 
   const { filteredRegion } = useSelector(
     (state: RootState) => state.countryFilter
@@ -50,7 +55,7 @@ const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
     : classes['filter__list__element--dark'];
 
   return (
-    <div className={classes['filter']}>
+    <div className={classes['filter']} ref={filterListRef}>
       <div
         className={[
           classes['filter__header'],
