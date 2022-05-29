@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# Frontend Mentor - REST Countries API with color theme switcher solution
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
 
-### `npm start`
+**Note: Delete this note and update the table of contents based on what sections you keep.**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Overview
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### The challenge
 
-### `npm test`
+Users should be able to:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- See all countries from the API on the homepage
+- Search for a country using an `input` field
+- Filter countries by region
+- Click on a country to see more detailed information on a separate page
+- Click through to the border countries on the detail page
+- Toggle the color scheme between light and dark mode *(optional)*
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Links
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Solution URL: [https://rest-countries-api-platform.netlify.app](https://rest-countries-api-platform.netlify.app)
+- Live Site URL: [https://rest-countries-api-platform.netlify.app](https://rest-countries-api-platform.netlify.app)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## My process
 
-### `npm run eject`
+### Built with
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [React](https://reactjs.org/) - JS library
+- TypeScript
+- CSS/SaSS: Flexbox, CSS Grid, CSS modules
+- Redux
+- React Router
+- Custom Hooks
+- Mobile-first workflow
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### What I learned
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This project was very useful in terms that I could revise most of the front-end technologies that I studied before.
+I learnt the basics of TypeSript during the development of this project. I found Typescript very useful to use for the development of this project, since I worked witha lot of data types and a lot of functional components. With typescript, I could make sure that the communication between my components is correct and that the needed data is provided everywhere.
+I learnt the basics of React Router v6, which I used for the implementation of the pagination system and also for the display of the details about countries.
+This is my first project where I used theme changer (dark and light mode), which I developed using mixins. The mixins were responsible for the light and dark modes. 
+I then applied these mixins for the components that I created.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Continued development
 
-## Learn More
+In future projects, I want to focus mainly on the technologies I'm not confident with: Webpack (I mainly created my React projects using the create-react-app, but I wanna configure the bundling of my future projects manually if possible). 
+I would like to master Typescript as much as possible since I found it very helpful.
+I also want to take React to the next level, together with Redux.
+One of my main weaknesses currently is the testing, and I think that writing correct test is essential for a good developer. For the current project, I wanna create the unit and integration tests retrospectively (I created 2 until to this point, but that is not enough).
+I also wanna learn software architacture, architectural and design patterns.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Author
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Frontend Mentor - [@Lorand98](https://www.frontendmentor.io/profile/Lorand98)
+- Twitter - [@LorandKalmar](https://twitter.com/LorandKalmar)
+- LinkedIn - [lorand-kalmar](https://www.linkedin.com/in/lorand-kalmar-69988b173/)
