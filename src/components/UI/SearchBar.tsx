@@ -42,6 +42,8 @@ const SearchBar: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
         placeholder='Search for a country...'
         value={searchedCountry}
         onChange={searchHandler}
+        name='searchBarInput'
+        id='searchBarInput'
       />
       {
         <TiDeleteOutline
@@ -50,6 +52,7 @@ const SearchBar: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
             classes['search-bar__icon--x'],
           ].join(' ')}
           onClick={removeSearchHandler}
+          data-testid='deleteIcon'
         />
       }
     </div>
