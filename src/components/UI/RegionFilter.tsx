@@ -62,14 +62,19 @@ const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
           regionFilterHeaderThemeClasses,
         ].join(' ')}
         onClick={showListHandler}
+        data-testid='showList'
       >
-        <span className={classes['filter__header__text']}>
+        <span
+          className={classes['filter__header__text']}
+          data-testid='filterHeaderText'
+        >
           {filteredRegion || REGION_FILTER_PLACEHOLDER}
         </span>
         {filteredRegion ? (
           <TiDeleteOutline
             className={classes['filter__header__icon']}
             onClick={removeFilterRegionHandler}
+            data-testid='removeFilter'
           />
         ) : (
           <MdKeyboardArrowDown className={classes['filter__header__icon']} />
@@ -107,6 +112,7 @@ const RegionFilter: React.FC<{ resetPages: () => void }> = ({ resetPages }) => {
                       classes[`filter__list__element--${index}`]
                     } ${listElementThemeClasses}`}
                     onClick={filterRegionHandler.bind(this, countryRegion)}
+                    data-testid={countryRegion}
                   >
                     {countryRegion}
                   </li>
