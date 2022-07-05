@@ -1,7 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Provider } from 'react-redux';
-import store from '../../store';
+
 import { renderWithProviders } from '../../test-utils';
 import { CountryRegions } from '../../types';
 import RegionFilter from './RegionFilter';
